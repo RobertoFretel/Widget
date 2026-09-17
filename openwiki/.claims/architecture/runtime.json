@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:2fa7343b69ec623a70e85d2ef1912ac25865625280fd2aa8b890a63a1dbf806d",
+  "claims": [
+    {
+      "id": "claim_aecd18bff4d04913a4df0bc5142580d8",
+      "statement": "The server entry point src/index.ts creates a single Elysia API instance with prefix 'api' and mounts it under /api/* via Bun.serve, while all other paths fall back to index.html.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L22-L27",
+          "version": "repo-lines-v1:sha256:da9e5d2d0825d15ad5c8a4fc3256c856413256652c29a8d66e20efaac52a816d:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTkyNDIzZmIwMDI3YjdjYTg3MWU0YjBmNTgzZmQyMzBhMjQwYTYwOTAyZTkzYmU1MDc5MjlkMzdjM2RlNjc4ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjZmNWI0MGIxNTg0NTdkMTc4NjRmMjE3OTA3ODZkZDVhMmVjZGI2NGI2NmE2NTFmNzg4ZDRlMjVjZDMzMDNkMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMGFlODI0NzgxMjFkNWMwMDQ4MGNiYjljODQ3YzczNGQ3NGE2Y2EwMDA4YjA0OGU3N2I5YjUzODFhZjc0NDg5ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjIsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTM1MmM4OWZjMTAxNWMxN2ZjYjM2YjU0MTIyNTc3ZDEyNzU1ZmI1OWExY2RmYmQzY2ZhNjNlOGI5NzEyMzYyNyJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L6-L20",
+          "version": "repo-lines-v1:sha256:aa486c948a2e3c5b3136c2ec46960b992ca774fcb9b2c0386696a05620e98764:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUwNmJmYTE0MzEzNzNiOTVlYjM0Yzk0NzQzOTA5MGNmMjE1YzMzOTcwY2NhYzY2MGRhYWI3ODAwZDNiY2ExMTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBmYTk1MDRiYmJhNDJmZTRlOTg4MThlNjlmMjM4MTg1MGFmY2JkYzQwNTg0MmFmZDIxYTUyYTAxNDE1NDhhNDMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjlhODY4ZDliMGFmMzdkMTFhZjRjMmUxMzkyN2QwMDhmZTM3MjQyMGI0YzU3Y2M5MWViMmE5N2VhN2NhZmI3NzUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZiNTVhZjMwM2VhM2QzZTU5NjM3Y2RlNzdiYTQzNDI3NmQyZTVlM2VlMjgzYjY3ZWU2MDlkNzJiY2E4MDRlYzAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4dbc6a9409fc4f659a1d476eadba4ce2",
+      "statement": "The Elysia API registers a global onError handler that maps INTERNAL_SERVER_ERROR exceptions to HTTP 502 and a JSON message, without forwarding the original error details to the client.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L6-L13",
+          "version": "repo-lines-v1:sha256:f77b54251271d78eb9982951ad46fdd40b5e29dddb212765b8c32720b3a913ce:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTA2YmZhMTQzMTM3M2I5NWViMzRjOTQ3NDM5MDkwY2YyMTVjMzM5NzBjY2FjNjYwZGFhYjc4MDBkM2JjYTExMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjIzNTI1ODljMzRkM2M2MDY4NTkzMWI2ZWNjNGQ1MDk5MWE3YzU2YzhmYmEyODk0MTE0NjU3NjkwMjcyY2FjMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWE4NjhkOWIwYWYzN2QxMWFmNGMyZTEzOTI3ZDAwOGZlMzcyNDIwYjRjNTdjYzkxZWIyYTk3ZWE3Y2FmYjc3NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDYyZjBlM2Y5Zjg1MmM0MTVmYzQyZjBlZmJkOWI0MTVlYjdjNjJjNjRhZWU2ZGM2ZTYyNDBhZWJlYjBlNWM1OCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_01dd963ef26a4da9b9681d5062711843",
+      "statement": "The WIDGETS array in src/lib/widgets/index.ts is the single source of truth for widgets and is imported by both the server and the frontend to register API plugins and render React components.",
+      "evidence": [
+        {
+          "resource": "repo://src/frontend.tsx#L11-L16",
+          "version": "repo-lines-v1:sha256:28c31bb56fc8c765b7cda3e6a0c3631f2faa718ffa0a22889094bedb883d2ec3:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTk3OTkwODA5M2UwNTM5MTlkM2VlM2NmNDgwOTQ5ZTdmNzRlOTY2MzA3NjZkZjdiMTc5ODM0NzgxMGY4MDlkZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjZmNWI0MGIxNTg0NTdkMTc4NjRmMjE3OTA3ODZkZDVhMmVjZGI2NGI2NmE2NTFmNzg4ZDRlMjVjZDMzMDNkMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzZhMmRlNzE0MDI3ZTM0NTYzNjgxODgxYWI1ZTAyMWMxMzU4ODA1N2EzZDFjMDI1YTA0MDU3NzQ0OTk3ZjU5YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWYzNGFhMTJjYzcyZDc3NTQ4OGRmODQyMTVlYWQ3OThkZDlhMjAwYTYyNzI1ZDdjMWMzN2M4OWFiYThjZDYzMCJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L15-L19",
+          "version": "repo-lines-v1:sha256:4749baf9cedb8b2cc97e1bb5c124c825703095c3191f0d26a3625513a4c86172:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiM2ZlN2ZjOTg1MzNjYTFkMThmOGFkNjMzMGM4ZmI4OTk1NzY1OGNhNDYxMjdjM2Q4MDVhZjE0NTYzNWE4ZWNmOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmFkMTc4Y2MzNmIyYzJkNGI2ZjlmZjU5ZjQ3OTQzZTM0MmEzNjdmZTljNWUwZjdjYTEzNzVmMDU3MzYzNmRlMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTI5N2E1MmQ2N2JjZmJmNmI4NTJmMjgxOGIyOWRiN2E4NDU5MjA2MDNkYzEzYmFiZDI0M2UwMzdlODgxZGRjMSJ9"
+        },
+        {
+          "resource": "repo://src/lib/widgets/index.ts#L1-L3",
+          "version": "repo-lines-v1:sha256:9764feed88c011cf50759735e23d97f84cf25eec84c9e0761a3120ffb5a854fb:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTZiNThjNGIzYjZkNzBlMmVjNmVkN2I1NjBmOTM5YjllNzYyMTMwNGNmNDk1YTZkZWM1MTNjYjE1N2Y1YWNjNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDRkMGIyYmY2YjAwZjVmZjZlMWU2OGU4MjMwMDU0MmVhZmJlYjQ0MGEyNjYzMGU5NDgwNTdhNzkxMDVjMzMxYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_47edd6668a994072a4dd02513590070f",
+      "statement": "The React frontend hydrates into the #root element and uses import.meta.hot.data.root to preserve the React root across Bun module hot reloads in development.",
+      "evidence": [
+        {
+          "resource": "repo://src/frontend.tsx#L18-L26",
+          "version": "repo-lines-v1:sha256:32ff8aeced841263d0dfd426d64fce1f912d74de3c793d9b91973131e5d79d7f:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjcwNTQ4MzVhMmExYzk1NjE3NjYxMzE4NTA2Y2ZjMDU3MGE5ZmIxZDEyMThlMjEyNzA2MWM2NmUwNTE2MDZjYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWU0YTk0NjEwYzBhODkyMGI1MTNkZWQ5MjA1MThjNzExYzdmMTIxZGIzYjY5ZDNkNWNlZWEwY2MyZWNiMmVjYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzFhZjhiOWNkZjI5OTBjYjY2ZGVhMTg4OTA2MmUzNjcxMzI3YzZjNjBhZWY3YmFjY2NhNGZkNjYxMzI3NDg1OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_af99b226dcaa440d87f48b7b7b5546d8",
+      "statement": "src/index.html is the frontend shell that loads frontend.tsx; in development it is served on demand, while bun run build emits a minified browser bundle from index.html into dist/ for production.",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L6-L6",
+          "version": "repo-lines-v1:sha256:34833d5949c03a40ca952491610a6659644b3aa466362f799020dbf1981547db:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzQ4MzNkNTk0OWMwM2E0MGNhOTUyNDkxNjEwYTY2NTk2NDRiM2FhNDY2MzYyZjc5OTAyMGRiZjE5ODE1NDdkYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzQ4MzNkNTk0OWMwM2E0MGNhOTUyNDkxNjEwYTY2NTk2NDRiM2FhNDY2MzYyZjc5OTAyMGRiZjE5ODE1NDdkYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWI0ZjZhNDYyZDEyZTExMzc1MGI2NTQzYzQzYzQzMDQ4NjIyOTExNWIyNWE1ZTdhM2E1YzFkNTcyYTU1ZjkxMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDNkYzJkNWU2Mjg0MzI0OGRiOWMwZTVkOGQwMmM1OTdiZmNhMzcxMzJiY2Y3MTVlYzg3NGE1MTgxZTUwMTExMSJ9"
+        },
+        {
+          "resource": "repo://package.json#L8-L8",
+          "version": "repo-lines-v1:sha256:f4225417519cd004cef9a03c166a88c686af620ed2f02d82f84dbddcf69e6c2b:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjQyMjU0MTc1MTljZDAwNGNlZjlhMDNjMTY2YTg4YzY4NmFmNjIwZWQyZjAyZDgyZjg0ZGJkZGNmNjllNmMyYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjQyMjU0MTc1MTljZDAwNGNlZjlhMDNjMTY2YTg4YzY4NmFmNjIwZWQyZjAyZDgyZjg0ZGJkZGNmNjllNmMyYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjBmNGViZjJmMmUyN2Y3ODk5NWVjZTVmMDhhZjAxYjdkYzc5MGE5OTc3OTMxYzNiMmFmMzNhNWNlMGVlZjBiYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWY3NGY5NjQ3N2ExMmJlYjk3YzE0MTMxMTA0OTMyM2ExNzQ4OTNiNDlkNGZmMzczNjUyODU0M2RmNzdhNTMzMCJ9"
+        },
+        {
+          "resource": "repo://src/index.html#L1-L12",
+          "version": "repo-lines-v1:sha256:038dac9e28ba4fbb897bfc34af2e71ff457848f0b5538e52941b02bf6b29e8c2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMzNWZjYTg1NzRmMDYwZWVhMjRlYmNkYWU2Yjc4ZjMyNDE0ZjVkZTAzZGExMDg0ZmQwZTczZDcxMDc2OGUzYTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQzZWQ4MWNkMTZkZjg4ZDY5MjE2NjQ2ZDhkYWRhNzYzNGIzM2E2OTg2ZTljMjNhNzI2MzFkMTkzM2I2MzVhNTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6003316e005544d98189520d8bb2de0a",
+      "statement": "The Widget class in src/lib/builder.tsx defines a dynamic widget that registers an Elysia backend plugin at widget/${name} with TypeBox query validation and a React component that fetches /api/widget/${name} via TanStack Query.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/builder.tsx#L31-L104",
+          "version": "repo-lines-v1:sha256:1fb34aa7cc98d87e99bddc2ef34b6d0348f6caf7842b877a61033bda8fb4fbf2:eyJzZWxlY3RlZExpbmVDb3VudCI6NzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlmZjBiZDU4ODg1NDA2MzRjZGZiYmY3MWUxYjMyYmRiYmUzZDMyMDZmYjUyZmQzZmQ3OTdiZGYwMWI5N2RkYTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM5ZTNjZWVhOWI1Y2MwYzk1YTFkYWE0ZmRjYzMzN2Y0OTIxOGY3NDZiMjEzNDRmNWIyODA5NGQ0YzE1MzgyMGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJhZjE3ODA0NmJmOWE4NjAxNDYyZjViYTIwZDNjZDI5YmMwODhiYzBhN2RmZTE5MGQ0OTgyMjQ0MDcyNDZlOWUifQ"
+        },
+        {
+          "resource": "repo://src/lib/builder.tsx#L61-L66",
+          "version": "repo-lines-v1:sha256:9867f51a93e3686e569752c33912f1514fde5a999c46999d5253d6b056f8e266:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzZiOGUzNmU4NTQ0NDY1YzVjMmYyM2ExZGJiM2QzYWE1YmZlNTY2YjY3OTNhNjc2ODE4NjZkNTcyMWIxNjQ2ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzE3YWYxMTAxYzk3YjdjMmY1MjU0MDc4MmU2MzRjYzQ0NDBmMGU5NzAzNDFlNTJmOTc1MjMxMWQ3OGI3ZDdkMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWRiNTY1ZjI2NTg2MjA2YWUxMGQ4Y2MwNzM2ZDBjZjMwOWQxYTYxOTZmNTI3MDI2MWJkNGEwMDMxYmNkMzJmZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjkwZDVjMmE5MDhmM2E0Zjk0MjQ3MjE1N2YzOGFlYjJhYTI5ODE0YThlMGE4NDFjNzBjZTZkNDM5NTI3MDllZCJ9"
+        },
+        {
+          "resource": "repo://src/lib/builder.tsx#L68-L96",
+          "version": "repo-lines-v1:sha256:1382655acf523e17a919c4cbe03e29cb97b8adc258e01d9daea0f1854246d69f:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQwY2ZmMzNiZjgyOGM2YzgyMjBjNTk2NzBjNDU4NzlkMTc0Nzk4MzZlNzNhZjhjMjUwMWVkNGYxYTE1MDkwNWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFkOWUxMjU0NjQyNTU3NmQzZGVhZThjOWI5ZGJmMTI4ZDVkNmRkYWY1ZDdmZTg1NzkzNDkyN2RlZmZhM2I5ZGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJmYTA1ZDMxNGJiZjlkNWMxYWM3ZWNmMjU2MDBmMDhkMjFiNTQxNWUyMzZlZGNmYmNjYzA0MTU2MGJhMjk1NGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRkN2Q0Y2Y1OGUyYTVmNTExMTY5NDIzNmM2M2NiM2M5ZDRmYjI0OTBkZmE1OWNhYjhlNTgwNzgwMTY1MmRjOTIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_029caa9ecedb4270bcc19975637d8cc2",
+      "statement": "A widget without a backend is rendered as a static component only, while dynamic widgets render loading and error states when useQuery is pending or fails.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/builder.tsx#L51-L59",
+          "version": "repo-lines-v1:sha256:b27f8f5bf5f5b3d9ac4a86e22ed6bf3014a79a54aae4cc61a37c6ff28e483822:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODI5OTdjNDI0NWVlNmZiZWYzZGRiZTYxZDc5YmYyZGIzYTY2Y2VhOWRjMGFmOTljZmI1NGU0NjI2NjE5NDRhOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5M2Y0MGUzNzgxZWI4OTZjODJkMDQ2YTA4MDY3YTExZTM1Y2RmMmYxZGZhZjI2ZmVhOTBiOGRiNjY3NjQxMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzJlMzBkYTE3NDViZmQ1NWY2NjNiNjU4MDkyZjUxNjAxZThjM2ViNDQ2MmFmZTViMjY0MjhlMzQwOWEyYWYzZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTdhYTZkZjA1Y2UyNmQzODRjNDRiODZjYmRlZDI0NDY5N2E4YTkwMzQ4N2VjZTMzYzFlNDIyMGRhOWUwZDIzZiJ9"
+        },
+        {
+          "resource": "repo://src/lib/builder.tsx#L92-L93",
+          "version": "repo-lines-v1:sha256:b23afc6cae65faf35205d6fb0500d3c2263c4b5d6af12b9ee1aa3cbe71878eec:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOWFhZTg1ZDYxMTQxMjY1ZTM1ZWFmM2VhYWRmN2M3ZmNiOTNhNmIyNDA0ZDhkZTQyZDMyNThlMzkwNjBiOGY1YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODJmNGZkMTU1ZDU1NzBkYjAxY2E2N2FlMTVkMjYyMmIxMTA5YzZjZmY4YWQ4NmViZmRiZGY3MWViMmE2YjMyZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTBjY2FjMGRiZGZlMzBmMzE1ZWQ5NzJlY2U3MTc4MjNkNTg4YzliZmMzNjJmNzNhNzNiNWRmOWJiNjY1YzNlYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDNhOTZjOTA2NDA3ZWRjYzI0NTk5MDU1NGFhZjI0MDMwMWRhNGNkZDU4MDY3Y2RkYTIxN2U0YmRjMzg0YzRmMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_ac0b877dcda24b2788bbc5094c798ff3",
+      "statement": "Dynamic widgets currently always use their defaultQuery as the active query; there is no runtime mechanism for users to change widget parameters.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/builder.tsx#L68-L73",
+          "version": "repo-lines-v1:sha256:ea681046ef189d1257ad101032abc67fd6d5f0f63b112231bffacf56b2a1b40c:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDBjZmYzM2JmODI4YzZjODIyMGM1OTY3MGM0NTg3OWQxNzQ3OTgzNmU3M2FmOGMyNTAxZWQ0ZjFhMTUwOTA1YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMGQwOTgxZjVmZTk2OWQ1NjkzMjAzOTFmODFjOWMxYTkxYTk5Njg5Nzg3YjMxYWUyNTVkOGFhN2I1NjhkZWYxNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmZhMDVkMzE0YmJmOWQ1YzFhYzdlY2YyNTYwMGYwOGQyMWI1NDE1ZTIzNmVkY2ZiY2NjMDQxNTYwYmEyOTU0ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiM2VlYzcwYTUzNzQyOWQ3NjE1ZGZmNmRkZjA5NDgwZjVlNTQzNTk2MzA2OWZmYjIwODQ2NGU3MWIxNDY3ZTk0YiJ9"
+        },
+        {
+          "resource": "repo://src/lib/widgets/Prova.tsx#L19-L21",
+          "version": "repo-lines-v1:sha256:74112db59b13286fd5ffd0068c382ea865b84d5183725719474c2d061386bee0:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjgwMGM1YjQ3ZGM3NjA3ZGY3MWIwMWYxODMzYzBkNjI5MTMyNGRlOGQxYzc3ZGQ2YzRiMWM0ODg5ZGE3MzJkOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmI3ZDMzMjgxMjI4ZDljZDBlYzQ2NDQ1MmY1MGY0ZjQ0MWE1NWQ2ZjAzYmU3M2Q5NDVlZTFhMTdkNmFlNTk1MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjEsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjk1NzZiNTRlMjU1ZTNjOTQ4ZWVhNWI1OTA0ZmEzOGI4MTY4MmZkZDNjYmQ5YWU4NDFmZjBlN2JkODBkMzk0YyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_4cfa8d4eae814f23b5b32188cd55e821",
+      "statement": "The production build defines process.env.NODE_ENV as production, minifies the browser bundle, and exposes only environment variables matching BUN_PUBLIC_* to the frontend.",
+      "evidence": [
+        {
+          "resource": "repo://bunfig.toml#L1-L2",
+          "version": "repo-lines-v1:sha256:3ab75b001b8323168a8a4ac1ef83762d22d87bb005fe77d02a1dadb79fb44733:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjEzMDNiZjMyNDM4N2Q3NjcyNWZjNjQ1OGFlNjYzMGQ5OTBjYzdiNGM4MDllYTU3YWY5ZTBkZjkyMTk2ZTljZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTFhYzI5NTRjMzAxMjhjMjk1OTBkMWNiYzIzZGViZTUwNTMzZDQyYWY4NmZjNzMwYmYyZDFlMmQ5YTQ5MGUyNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://package.json#L8-L8",
+          "version": "repo-lines-v1:sha256:f4225417519cd004cef9a03c166a88c686af620ed2f02d82f84dbddcf69e6c2b:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjQyMjU0MTc1MTljZDAwNGNlZjlhMDNjMTY2YTg4YzY4NmFmNjIwZWQyZjAyZDgyZjg0ZGJkZGNmNjllNmMyYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjQyMjU0MTc1MTljZDAwNGNlZjlhMDNjMTY2YTg4YzY4NmFmNjIwZWQyZjAyZDgyZjg0ZGJkZGNmNjllNmMyYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjBmNGViZjJmMmUyN2Y3ODk5NWVjZTVmMDhhZjAxYjdkYzc5MGE5OTc3OTMxYzNiMmFmMzNhNWNlMGVlZjBiYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWY3NGY5NjQ3N2ExMmJlYjk3YzE0MTMxMTA0OTMyM2ExNzQ4OTNiNDlkNGZmMzczNjUyODU0M2RmNzdhNTMzMCJ9"
+        },
+        {
+          "resource": "repo://package.json#L9-L9",
+          "version": "repo-lines-v1:sha256:11b872e6de0a91244ea61da00460380ea76a0b673a3a44fc0a607d7554872668:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTFiODcyZTZkZTBhOTEyNDRlYTYxZGEwMDQ2MDM4MGVhNzZhMGI2NzNhM2E0NGZjMGE2MDdkNzU1NDg3MjY2OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTFiODcyZTZkZTBhOTEyNDRlYTYxZGEwMDQ2MDM4MGVhNzZhMGI2NzNhM2E0NGZjMGE2MDdkNzU1NDg3MjY2OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGY5OWM4NzExZGE4NWMwMTczNmFmZTkyZTZhZjg4Njc4NTQ1ZGExNjI2MDNiYTQ3ZWYyY2Y3ZGZjNjhkNTdkMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWU4Y2ZlYTI4MjNiYTMwYzQ1ZDkwNTMzMTIwM2ZkZDQ3OTU5NjI4MTE0OGUzYmVlMWI5MzllYzNhNzBkMTBjNCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_8e4ee6bfd8bc4cb28870e9a6a8bb0e75",
+      "statement": "Because Elysia is configured with prefix 'api' and also mounted under /api/* in the Bun route table, widget backend endpoints are served at /api/widget/${name}.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L15-L19",
+          "version": "repo-lines-v1:sha256:4749baf9cedb8b2cc97e1bb5c124c825703095c3191f0d26a3625513a4c86172:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiM2ZlN2ZjOTg1MzNjYTFkMThmOGFkNjMzMGM4ZmI4OTk1NzY1OGNhNDYxMjdjM2Q4MDVhZjE0NTYzNWE4ZWNmOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmFkMTc4Y2MzNmIyYzJkNGI2ZjlmZjU5ZjQ3OTQzZTM0MmEzNjdmZTljNWUwZjdjYTEzNzVmMDU3MzYzNmRlMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTI5N2E1MmQ2N2JjZmJmNmI4NTJmMjgxOGIyOWRiN2E4NDU5MjA2MDNkYzEzYmFiZDI0M2UwMzdlODgxZGRjMSJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L25-L25",
+          "version": "repo-lines-v1:sha256:c60cd794c3ff06b8b3efc42d41d41b85e6fd9534661fbaf3a0b3ebe5b613cb72:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzYwY2Q3OTRjM2ZmMDZiOGIzZWZjNDJkNDFkNDFiODVlNmZkOTUzNDY2MWZiYWYzYTBiM2ViZTViNjEzY2I3MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzYwY2Q3OTRjM2ZmMDZiOGIzZWZjNDJkNDFkNDFiODVlNmZkOTUzNDY2MWZiYWYzYTBiM2ViZTViNjEzY2I3MiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTkxMTIzYWRmY2VhMjU0ZjNiYWZmODU4ZTI3ODViYWQ5ZTM1N2UxMzUyYWQzYmU3MTE1MWRlMjZjNDYwN2ZhNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTM4M2FjMTk5OGFkODgyODg0NWM3MGVkZmY5ZDI1ZmNjNzg5NTdmNTUzMGE3OTgzOGQ1MTg0YTFlMTcwZmU0MiJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L6-L6",
+          "version": "repo-lines-v1:sha256:e06bfa1431373b95eb34c947439090cf215c33970ccac660daab7800d3bca110:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTA2YmZhMTQzMTM3M2I5NWViMzRjOTQ3NDM5MDkwY2YyMTVjMzM5NzBjY2FjNjYwZGFhYjc4MDBkM2JjYTExMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTA2YmZhMTQzMTM3M2I5NWViMzRjOTQ3NDM5MDkwY2YyMTVjMzM5NzBjY2FjNjYwZGFhYjc4MDBkM2JjYTExMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWE4NjhkOWIwYWYzN2QxMWFmNGMyZTEzOTI3ZDAwOGZlMzcyNDIwYjRjNTdjYzkxZWIyYTk3ZWE3Y2FmYjc3NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWUzMGVkMzYxMzZhMzdiZjMwNWM3Y2VkNWRmYzYyMGM1MTVhMDRhZjc3MDg2YzI3ZjE2MjU5OTNlZjY2ZGM1ZSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_49e069c6fc384f2dacaa40c0cee94912",
+      "statement": "App.tsx renders the page chrome including header, three-column layout, and footer, wraps the tree in a QueryClientProvider, and renders widgets in the first small column.",
+      "evidence": [
+        {
+          "resource": "repo://src/App.tsx#L1-L42",
+          "version": "repo-lines-v1:sha256:0a4b39ba5ee1491eed08642aa1c5bd149f66b7a406daaa88fde2b14def1d62ba:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI1OTA5NjViZjllZjFmMGQxYmUwY2YwNDY4NDVjNTYzMTM4MjU4ZjgxODBmNTY5ODZkNjJkMDQwNjZiNDE1NWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNlOTU5NmY0YmE3N2QwZWFmMTIxMjY3ZTcxODk1MDY3ZWE4NTQ0YTc4YTY3YmVkMjIyODJhMzJlYjk0OGVkYTAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_25f66c4f13bc4df39b5ab96a8d20b2fd",
+      "statement": "Prova.tsx demonstrates the dynamic widget pattern with a location query parameter, a backend that echoes the value, and a template that renders it.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/widgets/Prova.tsx#L1-L22",
+          "version": "repo-lines-v1:sha256:fd16fb1a93c24c2f448802ee2e4cf06b9404b7b41f7b80e8d3e67c3f556e8faa:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjljMjFmNjZmY2U1YTMzZjZjMGQyOTNhOWFmYTU0MmUxMjlhMDRhZjBkYWVkYWRmYWMyOTYwZGQ1MGYyNjBmZTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI5NTc2YjU0ZTI1NWUzYzk0OGVlYTViNTkwNGZhMzhiODE2ODJmZGQzY2JkOWFlODQxZmYwZTdiZDgwZDM5NGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.2",
+    "at": "2026-09-17T14:20:27.519Z"
+  }
+}

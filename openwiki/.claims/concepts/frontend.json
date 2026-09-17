@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:35b319ea58cd85caa44b2254e6c663ca6bc837e360496da233ec7c9b5117699a",
+  "claims": [
+    {
+      "id": "claim_1ba42dd53ab14d3ab01a28daed23a89c",
+      "statement": "The frontend is a client-side React 19 application that mounts on the body element declared as id=root in src/index.html, with no server-side rendering.",
+      "evidence": [
+        {
+          "resource": "repo://src/frontend.tsx#L18-L26",
+          "version": "repo-lines-v1:sha256:32ff8aeced841263d0dfd426d64fce1f912d74de3c793d9b91973131e5d79d7f:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjcwNTQ4MzVhMmExYzk1NjE3NjYxMzE4NTA2Y2ZjMDU3MGE5ZmIxZDEyMThlMjEyNzA2MWM2NmUwNTE2MDZjYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWU0YTk0NjEwYzBhODkyMGI1MTNkZWQ5MjA1MThjNzExYzdmMTIxZGIzYjY5ZDNkNWNlZWEwY2MyZWNiMmVjYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzFhZjhiOWNkZjI5OTBjYjY2ZGVhMTg4OTA2MmUzNjcxMzI3YzZjNjBhZWY3YmFjY2NhNGZkNjYxMzI3NDg1OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://src/index.html",
+          "version": "repo-file-v1:sha256:038dac9e28ba4fbb897bfc34af2e71ff457848f0b5538e52941b02bf6b29e8c2"
+        },
+        {
+          "resource": "repo://tsconfig.json#L8-L8",
+          "version": "repo-lines-v1:sha256:4551ac09b17f8a8e76fe06fd6db0a9038fc2169a85fe5f6fbead0da9ae60d7b1:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDU1MWFjMDliMTdmOGE4ZTc2ZmUwNmZkNmRiMGE5MDM4ZmMyMTY5YTg1ZmU1ZjZmYmVhZDBkYTlhZTYwZDdiMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDU1MWFjMDliMTdmOGE4ZTc2ZmUwNmZkNmRiMGE5MDM4ZmMyMTY5YTg1ZmU1ZjZmYmVhZDBkYTlhZTYwZDdiMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTQ0YWU1Mjk5NWZkZmE4NDQ0MWMyMGI3Y2YzZjNmNmFiYmJlODVmMzY4NTZkYmRlY2RjZTBjZThiNTFmNDA0MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDg3MmE5OGU4OGVjYzAxNWIwNDcyOTkzOTUyN2JmY2E0NWEyMmE3YWU1NWYzNzFkN2U2Y2RjYTQzMjZiZTgyMyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_4bf00af85bc74b5e9d84620f7b47e225",
+      "statement": "src/frontend.tsx renders App inside React StrictMode and preserves the React root across Bun module hot reloads by storing it on import.meta.hot.data.root.",
+      "evidence": [
+        {
+          "resource": "repo://src/frontend.tsx#L19-L23",
+          "version": "repo-lines-v1:sha256:085cb4dc4af37878bb0b05cd1f60f8306e405add9344cb70a15869d807115268:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTJjODFlNDM2NDE3NjNiMDIyODdhOGE3Njg4MmI0ZTEzODRhNDNiYjRhYjBlMjMwNzlkMDJjNGM4NDZmZGZkNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDk5NjdlYzFlZDM4MzZmOGViMTdhZmYxNzJiNWJmZWY3ZGU2MDQ4NWE0MzljNmNhMTFjNTkxZTE3NTU3MzlhZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDY0YTExMDA5M2Y0NGM5NjRkNzU2Zjc3MTM1MjFkNDRhNjEzYTQwOWVkNjk5MWZiY2JiYzY0MGY3ODFiMGMzMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTA2OTk4ZWQ4ODg3MGQ2NWZiNGM2NjQ4MTBlOWNhMGY4ODdmYmFlNjgwNmQxMjFhNjAwZGEyNzM4MzNlNjBkZiJ9"
+        },
+        {
+          "resource": "repo://src/frontend.tsx#L26-L26",
+          "version": "repo-lines-v1:sha256:1e4a94610c0a8920b513ded920518c711c7f121db3b69d3d5ceea0cc2ecb2eca:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWU0YTk0NjEwYzBhODkyMGI1MTNkZWQ5MjA1MThjNzExYzdmMTIxZGIzYjY5ZDNkNWNlZWEwY2MyZWNiMmVjYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWU0YTk0NjEwYzBhODkyMGI1MTNkZWQ5MjA1MThjNzExYzdmMTIxZGIzYjY5ZDNkNWNlZWEwY2MyZWNiMmVjYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGY5MTIwNWQ5ZTI5MWJiYzdmYzRkODdjMjQzMjdlYzMwZGE5ODZjNGExZmU0NWMxMWRjYWEyYzk0M2VhNjE3NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://src/frontend.tsx#L8-L11",
+          "version": "repo-lines-v1:sha256:bc95130c8821b7db1d4af29e4d5fe516a44de475400d77d7f4b8beb0f48ea996:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGRiYTFiMTJiMjhjNTFmMjY3NDA1ZjcxMTNhYThmNGUwZjc1NTcxNWVhNWI5YzgwNGRlNmFjNTcwOTE1ZDZmNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTk3OTkwODA5M2UwNTM5MTlkM2VlM2NmNDgwOTQ5ZTdmNzRlOTY2MzA3NjZkZjdiMTc5ODM0NzgxMGY4MDlkZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDA2ODdiMDgyMGFhNzk4YmE4NDZlMDU1YjFmZGRmOTY4NGVhMWZlYTM4OTMxMjA4YzViYTFlZDNmNTgyMDkyYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWFlMDQ5ZWVmZjM0NjFhOWFmZDI5MWVlNmI2ZTBhNjAzYjllMDE4Yzk3YmUyYjVmZTRkYmEyMDIzZTAyNDdhOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_5d54fb4a11be463e8f65b37c331896e9",
+      "statement": "App.tsx owns the page chrome, imports the global stylesheet, and provides a single TanStack Query QueryClient to the entire component tree via QueryClientProvider.",
+      "evidence": [
+        {
+          "resource": "repo://src/App.tsx#L1-L4",
+          "version": "repo-lines-v1:sha256:c9edd47c8e62cf25d3e353a95079228dcf652cd4d34578b5874eba651b92ed4b:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjU5MDk2NWJmOWVmMWYwZDFiZTBjZjA0Njg0NWM1NjMxMzgyNThmODE4MGY1Njk4NmQ2MmQwNDA2NmI0MTU1YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzAzYjhmOTg4NmExOGIxYWU2OTAyNDAzOTdiNzhjYTY4Y2JkZDdjYzQyZjgxNGZhNjQzNTE1ZTAxOGFkMzUxNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzFiMDRjYmIyN2ZkYmM1ZjI4YjczM2VmNmUxZTU2OWZlN2FiMzdkYzA2NDQ0NDU0ZmVlZGExY2MxY2Q2Y2ViZSJ9"
+        },
+        {
+          "resource": "repo://src/App.tsx#L8-L40",
+          "version": "repo-lines-v1:sha256:78a13b1ebf4325dea27a91d7c4ef6bcbed384b4750d9386014c7fbff4c9f1f74:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJkNzg0ZDM4YTE0NWZlY2Q5ODZjYzVkMmFjZjQwZmI3OTZhMzJkZGJmMDM1ZGZlNTI3YWQyMzZhNDk2M2YxNzciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYyMTRhZGY2NTBhODQzZjUwNDMxYjg2ZWQyNmMwNjkzYjdjNzAyMjMzMzE1YmZjY2RiZWYyNzdmYmM4NzQ0YjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMxYjA0Y2JiMjdmZGJjNWYyOGI3MzNlZjZlMWU1NjlmZTdhYjM3ZGMwNjQ0NDQ1NGZlZWRhMWNjMWNkNmNlYmUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA5NGZjMGMxNzNkMWVjM2ZjNTAxZDdkZmE5Mjg1NTAxYzUyN2NmYjQ3MTI1ODNkYTNjYzM2MTgwNTY2YjRiZTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f462bc21e9904700b038f34086e82914",
+      "statement": "Widgets from the shared WIDGETS registry are rendered as keyed elements in the first page-column-small of App's three-column layout.",
+      "evidence": [
+        {
+          "resource": "repo://src/App.tsx#L21-L30",
+          "version": "repo-lines-v1:sha256:cb22cf9f9f0d2483d7bc08b9d26d6ef9c648cc13dd602d50ac0ed02331c9730f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA2OWZmZjg2ODBmNjg2M2QxYzFmNzg5ZTcwYzNmM2I2OGI4ZTUxNTY2MzJjOWJmZmUxNTY3MTBhZDQ3YzMzM2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJkNDlhNjFiNGM4ZDc4ZTRkMThlMmZjODBmMjE1NWE5NTNiYWY1YWNlY2Y5ZmRiM2QyNDIwNDFkOTM4NmNiYTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhiMWQxYzgwZDIyZWE1YmRkNjI1OWQ4ZTJkYWVhYTM5YzdjMjMxYjkxMDhmNGM3MTdhM2JhNDJmNTk4YTZiZDYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY5OTI3ODJmNTc4ZDVmOTYwYTUyMDFkNmI1YjMwOTE5YzlkMDJiMjYwNjM1YzZiNWY5NTY5NGQ2Yjk3NTYxMWUifQ"
+        },
+        {
+          "resource": "repo://src/frontend.tsx#L13-L16",
+          "version": "repo-lines-v1:sha256:c81613b3efd28bc59b59fa0de487f7b7e35a065ae2625bda37d294ab58b093d1:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODEzMThiMDJlZGFmZGJjYjNmNDljN2NmNWZhNTMzMWJlYmFkOGVjY2NmZGU5YzI2ZjRiYWZkOGJkNWE5ZTA2MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjZmNWI0MGIxNTg0NTdkMTc4NjRmMjE3OTA3ODZkZDVhMmVjZGI2NGI2NmE2NTFmNzg4ZDRlMjVjZDMzMDNkMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzhmZDJjOTUzNmQ3OTQ0NWNlYTAzZGVkYTg1NmExNDkwZGYxMjQ2NWFiZGE5MjFmZTczMGM4ZTMyMDZiYjgxNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWYzNGFhMTJjYzcyZDc3NTQ4OGRmODQyMTVlYWQ3OThkZDlhMjAwYTYyNzI1ZDdjMWMzN2M4OWFiYThjZDYzMCJ9"
+        },
+        {
+          "resource": "repo://src/lib/widgets/index.ts",
+          "version": "repo-file-v1:sha256:9764feed88c011cf50759735e23d97f84cf25eec84c9e0761a3120ffb5a854fb"
+        }
+      ]
+    },
+    {
+      "id": "claim_b4b2ce45857740aa8e0fc0da1b7184d3",
+      "statement": "src/index.css is a single global stylesheet that defines design tokens via CSS custom properties, loads JetBrains Mono locally, supports a light scheme through data-scheme=light, and provides responsive breakpoints for mobile and standalone display modes.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.css#L1-L7",
+          "version": "repo-lines-v1:sha256:936d500259c8b671f4a9d3c577b7a078fb0098285f881aa3b014abc9dc03a05e:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2U0N2NlNjQ4MDY5ZjI0NmZlODUyZjEwOTIxODVjODM3NTY2MmJiOTliYmQzYjQxYjE2MGJkZTU4NmNjODRhOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTU4YzBhYTU3NDE5ZGFlYzNkM2IwY2RkN2FkYmZlNjJmZDAyODMwMWEyMGU4Zjg1YzI4YzA1ZTUyYTRjOGM4OSJ9"
+        },
+        {
+          "resource": "repo://src/index.css#L2180-L2348",
+          "version": "repo-lines-v1:sha256:09f8064e8bd05d5ac3e34465c7ad77736b67ad8abdff45939a723214e698c7e4:eyJzZWxlY3RlZExpbmVDb3VudCI6MTY5LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiJlZWNjMDIyMzA5ZWNhODY3Y2ExYzU2MmYwNDhkZDA3NTNkYzA4NTEzZWNiZjc1NGYyMGI4NWQ0NDFiMDM2MmI4IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI1MTYzZjc0ZjBkMzk4ZWY4MDUyNDRjYzY5YWFmZWFkNmE3MzMxMDQyOWI4MzhlMWEyZGExZTc4OWUxN2ZhOGMxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJiYWMyMGM2ZTExNzliNmY3YTkwNWU1MDQ4ODIyNGFlNDM5NDRiMzQ3OTUxMThhN2E5NDkwNjMwZWZmOGE2MjA1IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlMDU1YzlkMzM4MjU4ZjViMDY5ZGQzOTRiY2IyNDAyNzA0NDFhYTMyNDZmZTRjNDM0NGM3MDgxNThjMzE0NzZhIn0"
+        },
+        {
+          "resource": "repo://src/index.css#L53-L55",
+          "version": "repo-lines-v1:sha256:3d543d5c926ed6512ad7fc1581787aea780d3c81adbc000a7025429e67b6c5e7:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDdmNTk0NWNmZmViMjUyMTUxNTEzM2VhYzA1MmI5MmNhYjYzNTc4NzE1MTBhMzIzZmYxMjVkMDMxMDljMTA0NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWVmM2UxOTE1OTg3NjQxODA0YjkyZmIzYzM3NmFjMjdiMWEwYzk5YWJiMzQ0YjZjMjg1NzNiMzQwNzE5M2U2NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWUyMzU2YmZiMjRiNjgzMmM4ZDAwOTEyMDU4MGQ3YTAyMGQzNWI0MWVmZGU2MmFjYWY5MTE1MmNkNzczOTBmZCJ9"
+        },
+        {
+          "resource": "repo://src/index.css#L8-L52",
+          "version": "repo-lines-v1:sha256:adf2e786a7f8555c79803f3df3d10172333f5dc02b0204ae96c30500bd162856:eyJzZWxlY3RlZExpbmVDb3VudCI6NDUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNlZWE1MDRiZjIwYjQxYzQ3MjlkM2NjZTQwYzIzODUxZDNhZTk1YjUwMTdlNmIwYTFhOGNhMzg1ZWIzMzU3YzgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI3M2VlMTNkZmIwNDQwMTUzMmQyNjViYTE5MjA4ODAyNDY2N2RiMDY0NmJkZGYyMThmN2FhMzhhMWUwMWExYTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNkNTQzZDVjOTI2ZWQ2NTEyYWQ3ZmMxNTgxNzg3YWVhNzgwZDNjODFhZGJjMDAwYTcwMjU0MjllNjdiNmM1ZTcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_738c475db8374589bca630fa4ff5c6e4",
+      "statement": "Development runs with bun --hot src/index.ts, production is built from src/index.html to dist/, and only environment variables prefixed with BUN_PUBLIC_* are exposed to the frontend bundle or static serving.",
+      "evidence": [
+        {
+          "resource": "repo://bunfig.toml#L1-L2",
+          "version": "repo-lines-v1:sha256:3ab75b001b8323168a8a4ac1ef83762d22d87bb005fe77d02a1dadb79fb44733:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjEzMDNiZjMyNDM4N2Q3NjcyNWZjNjQ1OGFlNjYzMGQ5OTBjYzdiNGM4MDllYTU3YWY5ZTBkZjkyMTk2ZTljZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTFhYzI5NTRjMzAxMjhjMjk1OTBkMWNiYzIzZGViZTUwNTMzZDQyYWY4NmZjNzMwYmYyZDFlMmQ5YTQ5MGUyNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://package.json#L12-L19",
+          "version": "repo-lines-v1:sha256:b4c36b505b0937ffbb9048329e3cdc94b029d1e80220060b19576b55fc9c5b3d:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzljMzljNDlhNzlhYTFlMzc5ZTRmNzRkMjhkNjUxNjIzYWY4OTljZmJiOGRmNjE2M2Y0NjhhNDM1ZmQ4NmMyNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGQ1Y2QyZmI0ZjNkZjg4NDUxNTI1NWIzOTUyM2YyZjhiNTQ3MmJlZWE5ZjU2NmZmY2EyMDRkYjgwMjU2MTA0MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWY3NGY5NjQ3N2ExMmJlYjk3YzE0MTMxMTA0OTMyM2ExNzQ4OTNiNDlkNGZmMzczNjUyODU0M2RmNzdhNTMzMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzFlMjhiYjc1MjZjOGZiM2EwZWYyNmQ1YWNhNzlmMzE1OTAyMDFkN2ExZDI0NGI3OWU3MDYzOTIyZDRmNzA0YyJ9"
+        },
+        {
+          "resource": "repo://package.json#L6-L9",
+          "version": "repo-lines-v1:sha256:27679653abcca3a49e76c5d13c3473403a2de6ce76a32f68097a03f0bdbe8bd6:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzQ4MzNkNTk0OWMwM2E0MGNhOTUyNDkxNjEwYTY2NTk2NDRiM2FhNDY2MzYyZjc5OTAyMGRiZjE5ODE1NDdkYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTFiODcyZTZkZTBhOTEyNDRlYTYxZGEwMDQ2MDM4MGVhNzZhMGI2NzNhM2E0NGZjMGE2MDdkNzU1NDg3MjY2OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWI0ZjZhNDYyZDEyZTExMzc1MGI2NTQzYzQzYzQzMDQ4NjIyOTExNWIyNWE1ZTdhM2E1YzFkNTcyYTU1ZjkxMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWU4Y2ZlYTI4MjNiYTMwYzQ1ZDkwNTMzMTIwM2ZkZDQ3OTU5NjI4MTE0OGUzYmVlMWI5MzllYzNhNzBkMTBjNCJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.2",
+    "at": "2026-09-17T14:20:27.519Z"
+  }
+}

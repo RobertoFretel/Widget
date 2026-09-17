@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:926d4db8988abcd3afb1ab8c747228565564863619afc303f0cfea093fb16dd6",
+  "claims": [
+    {
+      "id": "claim_5cb4be86dd1949239a6adbf8469b0fd0",
+      "statement": "The project exposes three lifecycle npm scripts: `dev` runs `bun --hot src/index.ts`, `build` runs `bun build ./src/index.html --outdir=dist --sourcemap --target=browser --minify --define:process.env.NODE_ENV='`production`' --env='BUN_PUBLIC_*'`, and `start` runs `NODE_ENV=production bun src/index.ts`.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L9-L19",
+          "version": "repo-lines-v1:sha256:9acf9a496f1cb3fd1a435fa705677ceb5af384beed304fff64bfbf8fd0aa9d1f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRkOGRlYjA5ODFlZTU0M2UyMmNlMzI3OWRiOGNmZDQ3Y2YyMzA4MzNiY2JhYmMwNjEyZjI3ZjlkZWY1YzMzNmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ3YzA2YzU2MWQ1YzMyNzM0MzY4NTI2OGE0NmIzMzkxZjM5OThlZWU4OTBkMmJlNTFmMGQyMWNjNGE1M2FlNmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc0OTI5YjAyNGY2ODk3MDVjZmVjMTM1YzZlZGJjZWY4YzI3YzllYzVjOWUwZjNkYWZmMjY1MzUwMjE3NmU5Y2QiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkwMzM5OTJhNWZiMzc5MTk2MWM0MzY4ZTg3MTYyMmVmN2UwMTMyMDhkYjIzYjc0MmQ5YmU5MjBjYTk0YWRmMWUifQ"
+        },
+        {
+          "resource": "repo://package.json#L6-L10",
+          "version": "repo-lines-v1:sha256:937e4613e1fcd7c14ca9406d5f3b47bef180d3dc289ef1ef39d9def2c59e6d7a:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzQ4MzNkNTk0OWMwM2E0MGNhOTUyNDkxNjEwYTY2NTk2NDRiM2FhNDY2MzYyZjc5OTAyMGRiZjE5ODE1NDdkYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGQ1Y2QyZmI0ZjNkZjg4NDUxNTI1NWIzOTUyM2YyZjhiNTQ3MmJlZWE5ZjU2NmZmY2EyMDRkYjgwMjU2MTA0MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWI0ZjZhNDYyZDEyZTExMzc1MGI2NTQzYzQzYzQzMDQ4NjIyOTExNWIyNWE1ZTdhM2E1YzFkNTcyYTU1ZjkxMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzRkYjAyYTdjZTU5M2U2MzU3YjcxYzM1YTE1NGIyMDY0ODEyNjgyMzBjMmY0NjkxZjJkZGM0ZWI0MThjYjM1ZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_ae0b8ed7042c4eb3b68914784f95c301",
+      "statement": "The production server entry point is `src/index.ts`, which imports `src/index.html`, mounts the Elysia API under `/api/*`, and serves the HTML shell for all other paths via `Bun.serve`.",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L9-L9",
+          "version": "repo-lines-v1:sha256:11b872e6de0a91244ea61da00460380ea76a0b673a3a44fc0a607d7554872668:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTFiODcyZTZkZTBhOTEyNDRlYTYxZGEwMDQ2MDM4MGVhNzZhMGI2NzNhM2E0NGZjMGE2MDdkNzU1NDg3MjY2OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTFiODcyZTZkZTBhOTEyNDRlYTYxZGEwMDQ2MDM4MGVhNzZhMGI2NzNhM2E0NGZjMGE2MDdkNzU1NDg3MjY2OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGY5OWM4NzExZGE4NWMwMTczNmFmZTkyZTZhZjg4Njc4NTQ1ZGExNjI2MDNiYTQ3ZWYyY2Y3ZGZjNjhkNTdkMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWU4Y2ZlYTI4MjNiYTMwYzQ1ZDkwNTMzMTIwM2ZkZDQ3OTU5NjI4MTE0OGUzYmVlMWI5MzllYzNhNzBkMTBjNCJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L1-L27",
+          "version": "repo-lines-v1:sha256:ef7dd5069e3c309997022d87041f82b94051b215f5f70d21d8186c4210d0c2dc:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc2NTk4YWVmMWYzNzgxNGVjYTJkZDcwOTJhZGI5NWIwMDBhNDIyZTFjNDhlYzczNDJhYzMyNjc5ZTIxOTJjYzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkzNTJjODlmYzEwMTVjMTdmY2IzNmI1NDEyMjU3N2QxMjc1NWZiNTlhMWNkZmJkM2NmYTYzZThiOTcxMjM2MjcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5d460f4b2cf54e7e94863191b3f0f303",
+      "statement": "The production build emits browser assets to `dist/`, `tsconfig.json` excludes `dist` from type checking, and both the build flag `--env='BUN_PUBLIC_*'` and `bunfig.toml` restrict exposed environment variables to those prefixed with `BUN_PUBLIC_`.",
+      "evidence": [
+        {
+          "resource": "repo://bunfig.toml#L1-L2",
+          "version": "repo-lines-v1:sha256:3ab75b001b8323168a8a4ac1ef83762d22d87bb005fe77d02a1dadb79fb44733:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjEzMDNiZjMyNDM4N2Q3NjcyNWZjNjQ1OGFlNjYzMGQ5OTBjYzdiNGM4MDllYTU3YWY5ZTBkZjkyMTk2ZTljZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTFhYzI5NTRjMzAxMjhjMjk1OTBkMWNiYzIzZGViZTUwNTMzZDQyYWY4NmZjNzMwYmYyZDFlMmQ5YTQ5MGUyNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://package.json#L8-L8",
+          "version": "repo-lines-v1:sha256:f4225417519cd004cef9a03c166a88c686af620ed2f02d82f84dbddcf69e6c2b:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjQyMjU0MTc1MTljZDAwNGNlZjlhMDNjMTY2YTg4YzY4NmFmNjIwZWQyZjAyZDgyZjg0ZGJkZGNmNjllNmMyYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjQyMjU0MTc1MTljZDAwNGNlZjlhMDNjMTY2YTg4YzY4NmFmNjIwZWQyZjAyZDgyZjg0ZGJkZGNmNjllNmMyYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjBmNGViZjJmMmUyN2Y3ODk5NWVjZTVmMDhhZjAxYjdkYzc5MGE5OTc3OTMxYzNiMmFmMzNhNWNlMGVlZjBiYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWY3NGY5NjQ3N2ExMmJlYjk3YzE0MTMxMTA0OTMyM2ExNzQ4OTNiNDlkNGZmMzczNjUyODU0M2RmNzdhNTMzMCJ9"
+        },
+        {
+          "resource": "repo://tsconfig.json#L35-L35",
+          "version": "repo-lines-v1:sha256:7f18a3968fa533b5106bbca45051e98d6e5b87d3c697082340595d9fc9e2a817:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2YxOGEzOTY4ZmE1MzNiNTEwNmJiY2E0NTA1MWU5OGQ2ZTViODdkM2M2OTcwODIzNDA1OTVkOWZjOWUyYTgxNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2YxOGEzOTY4ZmE1MzNiNTEwNmJiY2E0NTA1MWU5OGQ2ZTViODdkM2M2OTcwODIzNDA1OTVkOWZjOWUyYTgxNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiN2VlODFhODBhMGU5ZjlkNjYwN2M0MmU3MTgyNGFkZWM5YWUxY2JlMWVjNzE3OGNjYjIxMmY0NWUyNzFkYzlhOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjEsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_17e5378f0dfa4790a130c12dbbf01ee2",
+      "statement": "Only environment variables matching `BUN_PUBLIC_*` are inlined into the browser bundle or exposed to static files during development; `process.env.NODE_ENV` is forcibly defined as the string `production` in the bundle.",
+      "evidence": [
+        {
+          "resource": "repo://bunfig.toml#L1-L2",
+          "version": "repo-lines-v1:sha256:3ab75b001b8323168a8a4ac1ef83762d22d87bb005fe77d02a1dadb79fb44733:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjEzMDNiZjMyNDM4N2Q3NjcyNWZjNjQ1OGFlNjYzMGQ5OTBjYzdiNGM4MDllYTU3YWY5ZTBkZjkyMTk2ZTljZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTFhYzI5NTRjMzAxMjhjMjk1OTBkMWNiYzIzZGViZTUwNTMzZDQyYWY4NmZjNzMwYmYyZDFlMmQ5YTQ5MGUyNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://package.json#L8-L8",
+          "version": "repo-lines-v1:sha256:f4225417519cd004cef9a03c166a88c686af620ed2f02d82f84dbddcf69e6c2b:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjQyMjU0MTc1MTljZDAwNGNlZjlhMDNjMTY2YTg4YzY4NmFmNjIwZWQyZjAyZDgyZjg0ZGJkZGNmNjllNmMyYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjQyMjU0MTc1MTljZDAwNGNlZjlhMDNjMTY2YTg4YzY4NmFmNjIwZWQyZjAyZDgyZjg0ZGJkZGNmNjllNmMyYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjBmNGViZjJmMmUyN2Y3ODk5NWVjZTVmMDhhZjAxYjdkYzc5MGE5OTc3OTMxYzNiMmFmMzNhNWNlMGVlZjBiYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWY3NGY5NjQ3N2ExMmJlYjk3YzE0MTMxMTA0OTMyM2ExNzQ4OTNiNDlkNGZmMzczNjUyODU0M2RmNzdhNTMzMCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b87cd0e993e44048ae99b5f19e215bc6",
+      "statement": "Development uses Bun's `--hot` reload, and `src/frontend.tsx` preserves the React root in `import.meta.hot.data` so hot updates re-render without remounting.",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L7-L7",
+          "version": "repo-lines-v1:sha256:b8bda8f8f3996a64fa8559c4540cdfe25d01ca67a1aed55a4925ef0931779dc1:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjhiZGE4ZjhmMzk5NmE2NGZhODU1OWM0NTQwY2RmZTI1ZDAxY2E2N2ExYWVkNTVhNDkyNWVmMDkzMTc3OWRjMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjhiZGE4ZjhmMzk5NmE2NGZhODU1OWM0NTQwY2RmZTI1ZDAxY2E2N2ExYWVkNTVhNDkyNWVmMDkzMTc3OWRjMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzhlYTM3Mjc4NTU0OTczNGMxOGU1NzMxNDYxYzk3YmVmN2U2ODk1OGRiOTliMTI1NmJiMTM3ZDNhZGQyZjUyYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGU2ZWFjYzJiMTA4MDU1MTRmMmI4M2JhYmIyNWQwNTBmOTUxNGZjMDJkNjBjNTA5OTE0M2ZhMTQ1NzZmNWQ5MCJ9"
+        },
+        {
+          "resource": "repo://src/frontend.tsx#L25-L26",
+          "version": "repo-lines-v1:sha256:68f5e12dd9850822f251f100b2bd4e8da57b23c9f9631ceeecf5bf915143c7fe:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzI1ZTVkZTExZmZmMGE5MmQ3NjRlYjJjZTc3MTMwY2VkODY3NDQwZjMxYzUxZDQ3ZDM3MDgxY2ZmOWIwYzk4OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWU0YTk0NjEwYzBhODkyMGI1MTNkZWQ5MjA1MThjNzExYzdmMTIxZGIzYjY5ZDNkNWNlZWEwY2MyZWNiMmVjYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWUxYTZkNzc1YmMzM2MwYzljOWI0YzE3NTNmYzU0NTI3YzM1ZGFhNjY4ZjZlM2VkZGVjOWI0YWU5ZmY4Y2Q4NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_4cec7cceb9cd4a38b2c2034dcc56e26e",
+      "statement": "The application does not use server-side rendering: `src/index.html` delivers an empty `#root` element, and React mounts the UI client-side via `createRoot` in `src/frontend.tsx`.",
+      "evidence": [
+        {
+          "resource": "repo://src/App.tsx#L6-L42",
+          "version": "repo-lines-v1:sha256:f524c3a76b9e946f1a4c89f3c95e0aaaaf219d7311a87b37db7fcaf25b86f083:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZlNzAyNjVkNWI2N2RiMzdiZWE4MDgyM2M5NzgwNmFiMjBhMDkzMTA0ZGViNGJhMWU0NGYzZmVjMmM1MjcyOTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc5ZDIzM2Y1ZGFhYjIxOGQ5YzUxYWU4Y2FhMzU4Y2RlZTdiNTdiN2Y2Y2U0MTQ0N2ZjNjRlM2FlNTM0NjViNTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNlOTU5NmY0YmE3N2QwZWFmMTIxMjY3ZTcxODk1MDY3ZWE4NTQ0YTc4YTY3YmVkMjIyODJhMzJlYjk0OGVkYTAifQ"
+        },
+        {
+          "resource": "repo://src/frontend.tsx#L8-L26",
+          "version": "repo-lines-v1:sha256:bf78f22e87ea92c97a71202a17f9b2634d1fe05328da95326314014bfc3d08bf:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBkYmExYjEyYjI4YzUxZjI2NzQwNWY3MTEzYWE4ZjRlMGY3NTU3MTVlYTViOWM4MDRkZTZhYzU3MDkxNWQ2ZjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFlNGE5NDYxMGMwYTg5MjBiNTEzZGVkOTIwNTE4YzcxMWM3ZjEyMWRiM2I2OWQzZDVjZWVhMGNjMmVjYjJlY2EiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAwNjg3YjA4MjBhYTc5OGJhODQ2ZTA1NWIxZmRkZjk2ODRlYTFmZWEzODkzMTIwOGM1YmExZWQzZjU4MjA5MmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/index.html#L1-L12",
+          "version": "repo-lines-v1:sha256:038dac9e28ba4fbb897bfc34af2e71ff457848f0b5538e52941b02bf6b29e8c2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMzNWZjYTg1NzRmMDYwZWVhMjRlYmNkYWU2Yjc4ZjMyNDE0ZjVkZTAzZGExMDg0ZmQwZTczZDcxMDc2OGUzYTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQzZWQ4MWNkMTZkZjg4ZDY5MjE2NjQ2ZDhkYWRhNzYzNGIzM2E2OTg2ZTljMjNhNzI2MzFkMTkzM2I2MzVhNTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fe8ddf7f01274bbf94d31ee4140092a2",
+      "statement": "The same `src/index.ts` entry point is used for both `bun dev` and `bun start`, so API wiring, widget mounting, and error handling are identical across development and production.",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L7-L9",
+          "version": "repo-lines-v1:sha256:43dc2d5e62843248db9c0e5d8d02c597bfca37132bcf715ec874a5181e501111:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjhiZGE4ZjhmMzk5NmE2NGZhODU1OWM0NTQwY2RmZTI1ZDAxY2E2N2ExYWVkNTVhNDkyNWVmMDkzMTc3OWRjMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTFiODcyZTZkZTBhOTEyNDRlYTYxZGEwMDQ2MDM4MGVhNzZhMGI2NzNhM2E0NGZjMGE2MDdkNzU1NDg3MjY2OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzhlYTM3Mjc4NTU0OTczNGMxOGU1NzMxNDYxYzk3YmVmN2U2ODk1OGRiOTliMTI1NmJiMTM3ZDNhZGQyZjUyYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWU4Y2ZlYTI4MjNiYTMwYzQ1ZDkwNTMzMTIwM2ZkZDQ3OTU5NjI4MTE0OGUzYmVlMWI5MzllYzNhNzBkMTBjNCJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L1-L27",
+          "version": "repo-lines-v1:sha256:ef7dd5069e3c309997022d87041f82b94051b215f5f70d21d8186c4210d0c2dc:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc2NTk4YWVmMWYzNzgxNGVjYTJkZDcwOTJhZGI5NWIwMDBhNDIyZTFjNDhlYzczNDJhYzMyNjc5ZTIxOTJjYzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkzNTJjODlmYzEwMTVjMTdmY2IzNmI1NDEyMjU3N2QxMjc1NWZiNTlhMWNkZmJkM2NmYTYzZThiOTcxMjM2MjcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_dced55247d0c4d21b6f370171a2404de",
+      "statement": "The expected production deployment flow is `bun run build && bun start`, because `bun start` does not itself build the frontend and relies on pre-existing `dist/` assets.",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L8-L8",
+          "version": "repo-lines-v1:sha256:f4225417519cd004cef9a03c166a88c686af620ed2f02d82f84dbddcf69e6c2b:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjQyMjU0MTc1MTljZDAwNGNlZjlhMDNjMTY2YTg4YzY4NmFmNjIwZWQyZjAyZDgyZjg0ZGJkZGNmNjllNmMyYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjQyMjU0MTc1MTljZDAwNGNlZjlhMDNjMTY2YTg4YzY4NmFmNjIwZWQyZjAyZDgyZjg0ZGJkZGNmNjllNmMyYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjBmNGViZjJmMmUyN2Y3ODk5NWVjZTVmMDhhZjAxYjdkYzc5MGE5OTc3OTMxYzNiMmFmMzNhNWNlMGVlZjBiYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWY3NGY5NjQ3N2ExMmJlYjk3YzE0MTMxMTA0OTMyM2ExNzQ4OTNiNDlkNGZmMzczNjUyODU0M2RmNzdhNTMzMCJ9"
+        },
+        {
+          "resource": "repo://package.json#L9-L9",
+          "version": "repo-lines-v1:sha256:11b872e6de0a91244ea61da00460380ea76a0b673a3a44fc0a607d7554872668:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTFiODcyZTZkZTBhOTEyNDRlYTYxZGEwMDQ2MDM4MGVhNzZhMGI2NzNhM2E0NGZjMGE2MDdkNzU1NDg3MjY2OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTFiODcyZTZkZTBhOTEyNDRlYTYxZGEwMDQ2MDM4MGVhNzZhMGI2NzNhM2E0NGZjMGE2MDdkNzU1NDg3MjY2OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGY5OWM4NzExZGE4NWMwMTczNmFmZTkyZTZhZjg4Njc4NTQ1ZGExNjI2MDNiYTQ3ZWYyY2Y3ZGZjNjhkNTdkMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWU4Y2ZlYTI4MjNiYTMwYzQ1ZDkwNTMzMTIwM2ZkZDQ3OTU5NjI4MTE0OGUzYmVlMWI5MzllYzNhNzBkMTBjNCJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.2",
+    "at": "2026-09-17T14:20:27.519Z"
+  }
+}

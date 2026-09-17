@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:b4b170a291e4a1e8d7f37024b037bb036d34f137812a3274727ea3c8719031f6",
+  "claims": [
+    {
+      "id": "claim_583509a7fb3343639103daf8e92f1d79",
+      "statement": "The project uses Bun as its sole runtime, with package.json scripts invoking `bun` for dev, build, and start and the server entry point using `Bun.serve`.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:ab0fefdc8754968f171b6622a93d451c2b40a63549f0b55dc8862ac2c702d844"
+        },
+        {
+          "resource": "repo://src/index.ts#L22-L27",
+          "version": "repo-lines-v1:sha256:da9e5d2d0825d15ad5c8a4fc3256c856413256652c29a8d66e20efaac52a816d:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTkyNDIzZmIwMDI3YjdjYTg3MWU0YjBmNTgzZmQyMzBhMjQwYTYwOTAyZTkzYmU1MDc5MjlkMzdjM2RlNjc4ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjZmNWI0MGIxNTg0NTdkMTc4NjRmMjE3OTA3ODZkZDVhMmVjZGI2NGI2NmE2NTFmNzg4ZDRlMjVjZDMzMDNkMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMGFlODI0NzgxMjFkNWMwMDQ4MGNiYjljODQ3YzczNGQ3NGE2Y2EwMDA4YjA0OGU3N2I5YjUzODFhZjc0NDg5ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjIsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTM1MmM4OWZjMTAxNWMxN2ZjYjM2YjU0MTIyNTc3ZDEyNzU1ZmI1OWExY2RmYmQzY2ZhNjNlOGI5NzEyMzYyNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_97a2d2272f52411d941dd2ef57f6c8aa",
+      "statement": "`bun dev` starts the development server by running `bun --hot src/index.ts`, enabling Bun's module hot reload for both server and frontend modules.",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L7-L7",
+          "version": "repo-lines-v1:sha256:b8bda8f8f3996a64fa8559c4540cdfe25d01ca67a1aed55a4925ef0931779dc1:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjhiZGE4ZjhmMzk5NmE2NGZhODU1OWM0NTQwY2RmZTI1ZDAxY2E2N2ExYWVkNTVhNDkyNWVmMDkzMTc3OWRjMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjhiZGE4ZjhmMzk5NmE2NGZhODU1OWM0NTQwY2RmZTI1ZDAxY2E2N2ExYWVkNTVhNDkyNWVmMDkzMTc3OWRjMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzhlYTM3Mjc4NTU0OTczNGMxOGU1NzMxNDYxYzk3YmVmN2U2ODk1OGRiOTliMTI1NmJiMTM3ZDNhZGQyZjUyYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGU2ZWFjYzJiMTA4MDU1MTRmMmI4M2JhYmIyNWQwNTBmOTUxNGZjMDJkNjBjNTA5OTE0M2ZhMTQ1NzZmNWQ5MCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_226f42dceb9643d885feb9ae7c074f5b",
+      "statement": "Development hot reload preserves the React root across module updates via `import.meta.hot.data.root` in `src/frontend.tsx`.",
+      "evidence": [
+        {
+          "resource": "repo://src/frontend.tsx#L25-L26",
+          "version": "repo-lines-v1:sha256:68f5e12dd9850822f251f100b2bd4e8da57b23c9f9631ceeecf5bf915143c7fe:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzI1ZTVkZTExZmZmMGE5MmQ3NjRlYjJjZTc3MTMwY2VkODY3NDQwZjMxYzUxZDQ3ZDM3MDgxY2ZmOWIwYzk4OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWU0YTk0NjEwYzBhODkyMGI1MTNkZWQ5MjA1MThjNzExYzdmMTIxZGIzYjY5ZDNkNWNlZWEwY2MyZWNiMmVjYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWUxYTZkNzc1YmMzM2MwYzljOWI0YzE3NTNmYzU0NTI3YzM1ZGFhNjY4ZjZlM2VkZGVjOWI0YWU5ZmY4Y2Q4NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_c3aaa052639c47debd5c112d3182f9cc",
+      "statement": "`bun run build` produces a minified browser bundle in `dist/`, emits source maps, sets `process.env.NODE_ENV` to `\"production\"`, and inlines only environment variables matching `BUN_PUBLIC_*`.",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L8-L8",
+          "version": "repo-lines-v1:sha256:f4225417519cd004cef9a03c166a88c686af620ed2f02d82f84dbddcf69e6c2b:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjQyMjU0MTc1MTljZDAwNGNlZjlhMDNjMTY2YTg4YzY4NmFmNjIwZWQyZjAyZDgyZjg0ZGJkZGNmNjllNmMyYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjQyMjU0MTc1MTljZDAwNGNlZjlhMDNjMTY2YTg4YzY4NmFmNjIwZWQyZjAyZDgyZjg0ZGJkZGNmNjllNmMyYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjBmNGViZjJmMmUyN2Y3ODk5NWVjZTVmMDhhZjAxYjdkYzc5MGE5OTc3OTMxYzNiMmFmMzNhNWNlMGVlZjBiYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWY3NGY5NjQ3N2ExMmJlYjk3YzE0MTMxMTA0OTMyM2ExNzQ4OTNiNDlkNGZmMzczNjUyODU0M2RmNzdhNTMzMCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_af3ffd187546416f82e90c40eba52b5a",
+      "statement": "`bun start` runs the production server by setting `NODE_ENV=production` and executing `bun src/index.ts`.",
+      "evidence": [
+        {
+          "resource": "repo://package.json#L9-L9",
+          "version": "repo-lines-v1:sha256:11b872e6de0a91244ea61da00460380ea76a0b673a3a44fc0a607d7554872668:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTFiODcyZTZkZTBhOTEyNDRlYTYxZGEwMDQ2MDM4MGVhNzZhMGI2NzNhM2E0NGZjMGE2MDdkNzU1NDg3MjY2OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTFiODcyZTZkZTBhOTEyNDRlYTYxZGEwMDQ2MDM4MGVhNzZhMGI2NzNhM2E0NGZjMGE2MDdkNzU1NDg3MjY2OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGY5OWM4NzExZGE4NWMwMTczNmFmZTkyZTZhZjg4Njc4NTQ1ZGExNjI2MDNiYTQ3ZWYyY2Y3ZGZjNjhkNTdkMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWU4Y2ZlYTI4MjNiYTMwYzQ1ZDkwNTMzMTIwM2ZkZDQ3OTU5NjI4MTE0OGUzYmVlMWI5MzllYzNhNzBkMTBjNCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_279c303a185347c28ec969fc994c23ac",
+      "statement": "Only environment variables prefixed with `BUN_PUBLIC_` are exposed to the frontend bundle in both `bun run build` and `bun dev`, and `bunfig.toml` applies the same filter to static files served during development.",
+      "evidence": [
+        {
+          "resource": "repo://bunfig.toml#L1-L2",
+          "version": "repo-lines-v1:sha256:3ab75b001b8323168a8a4ac1ef83762d22d87bb005fe77d02a1dadb79fb44733:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjEzMDNiZjMyNDM4N2Q3NjcyNWZjNjQ1OGFlNjYzMGQ5OTBjYzdiNGM4MDllYTU3YWY5ZTBkZjkyMTk2ZTljZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTFhYzI5NTRjMzAxMjhjMjk1OTBkMWNiYzIzZGViZTUwNTMzZDQyYWY4NmZjNzMwYmYyZDFlMmQ5YTQ5MGUyNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://package.json#L8-L8",
+          "version": "repo-lines-v1:sha256:f4225417519cd004cef9a03c166a88c686af620ed2f02d82f84dbddcf69e6c2b:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjQyMjU0MTc1MTljZDAwNGNlZjlhMDNjMTY2YTg4YzY4NmFmNjIwZWQyZjAyZDgyZjg0ZGJkZGNmNjllNmMyYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjQyMjU0MTc1MTljZDAwNGNlZjlhMDNjMTY2YTg4YzY4NmFmNjIwZWQyZjAyZDgyZjg0ZGJkZGNmNjllNmMyYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjBmNGViZjJmMmUyN2Y3ODk5NWVjZTVmMDhhZjAxYjdkYzc5MGE5OTc3OTMxYzNiMmFmMzNhNWNlMGVlZjBiYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWY3NGY5NjQ3N2ExMmJlYjk3YzE0MTMxMTA0OTMyM2ExNzQ4OTNiNDlkNGZmMzczNjUyODU0M2RmNzdhNTMzMCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_9889d6479b094771881a219343bc8cdf",
+      "statement": "`src/index.ts` is the single server entry point: it creates an Elysia API with the `api` prefix, mounts every widget backend plugin from `WIDGETS`, and starts `Bun.serve` with routes for `/*` and `/api/*`.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L1-L27",
+          "version": "repo-lines-v1:sha256:ef7dd5069e3c309997022d87041f82b94051b215f5f70d21d8186c4210d0c2dc:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc2NTk4YWVmMWYzNzgxNGVjYTJkZDcwOTJhZGI5NWIwMDBhNDIyZTFjNDhlYzczNDJhYzMyNjc5ZTIxOTJjYzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZjViNDBiMTU4NDU3ZDE3ODY0ZjIxNzkwNzg2ZGQ1YTJlY2RiNjRiNjZhNjUxZjc4OGQ0ZTI1Y2QzMzAzZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkzNTJjODlmYzEwMTVjMTdmY2IzNmI1NDEyMjU3N2QxMjc1NWZiNTlhMWNkZmJkM2NmYTYzZThiOTcxMjM2MjcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_42dec267bc1b4c2d8fc95913156461d7",
+      "statement": "`src/frontend.tsx` is the browser entry point: it creates or reuses a React root under `StrictMode` and renders the `App` component with all widgets produced from the shared `WIDGETS` registry.",
+      "evidence": [
+        {
+          "resource": "repo://src/frontend.tsx#L8-L26",
+          "version": "repo-lines-v1:sha256:bf78f22e87ea92c97a71202a17f9b2634d1fe05328da95326314014bfc3d08bf:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBkYmExYjEyYjI4YzUxZjI2NzQwNWY3MTEzYWE4ZjRlMGY3NTU3MTVlYTViOWM4MDRkZTZhYzU3MDkxNWQ2ZjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFlNGE5NDYxMGMwYTg5MjBiNTEzZGVkOTIwNTE4YzcxMWM3ZjEyMWRiM2I2OWQzZDVjZWVhMGNjMmVjYjJlY2EiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAwNjg3YjA4MjBhYTc5OGJhODQ2ZTA1NWIxZmRkZjk2ODRlYTFmZWEzODkzMTIwOGM1YmExZWQzZjU4MjA5MmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b120194ee3b6433898e0c536f172c291",
+      "statement": "`src/lib/widgets/index.ts` exports the `WIDGETS` array that is imported by both the server (`src/index.ts`) and the browser (`src/frontend.tsx`), making it the single source of truth for widget registration.",
+      "evidence": [
+        {
+          "resource": "repo://src/frontend.tsx#L11-L11",
+          "version": "repo-lines-v1:sha256:9979908093e053919d3ee3cf480949e7f74e96630766df7b1798347810f809de:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTk3OTkwODA5M2UwNTM5MTlkM2VlM2NmNDgwOTQ5ZTdmNzRlOTY2MzA3NjZkZjdiMTc5ODM0NzgxMGY4MDlkZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTk3OTkwODA5M2UwNTM5MTlkM2VlM2NmNDgwOTQ5ZTdmNzRlOTY2MzA3NjZkZjdiMTc5ODM0NzgxMGY4MDlkZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzZhMmRlNzE0MDI3ZTM0NTYzNjgxODgxYWI1ZTAyMWMxMzU4ODA1N2EzZDFjMDI1YTA0MDU3NzQ0OTk3ZjU5YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWFlMDQ5ZWVmZjM0NjFhOWFmZDI5MWVlNmI2ZTBhNjAzYjllMDE4Yzk3YmUyYjVmZTRkYmEyMDIzZTAyNDdhOCJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L4-L4",
+          "version": "repo-lines-v1:sha256:9979908093e053919d3ee3cf480949e7f74e96630766df7b1798347810f809de:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTk3OTkwODA5M2UwNTM5MTlkM2VlM2NmNDgwOTQ5ZTdmNzRlOTY2MzA3NjZkZjdiMTc5ODM0NzgxMGY4MDlkZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTk3OTkwODA5M2UwNTM5MTlkM2VlM2NmNDgwOTQ5ZTdmNzRlOTY2MzA3NjZkZjdiMTc5ODM0NzgxMGY4MDlkZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjY5NTBkZDlhZWY0MzhiY2VhMzExMTAxYThlMmRkZjg4Y2RjZTI4YTYzNDI4ZDlkODczZDY1NDUyNDQ3NmNhNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGNmODU3MDM1NmUxYjQyYjZmNmFlOGNkMGNiOTBkYmYxYjViYWZlYTY2Nzk0ODIzODg3ZWU3NjRlMjljZDVmMiJ9"
+        },
+        {
+          "resource": "repo://src/lib/widgets/index.ts#L1-L3",
+          "version": "repo-lines-v1:sha256:9764feed88c011cf50759735e23d97f84cf25eec84c9e0761a3120ffb5a854fb:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTZiNThjNGIzYjZkNzBlMmVjNmVkN2I1NjBmOTM5YjllNzYyMTMwNGNmNDk1YTZkZWM1MTNjYjE1N2Y1YWNjNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDRkMGIyYmY2YjAwZjVmZjZlMWU2OGU4MjMwMDU0MmVhZmJlYjQ0MGEyNjYzMGU5NDgwNTdhNzkxMDVjMzMxYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_c8ae66f40a30490084d2118fb75cf061",
+      "statement": "Dynamic widgets created with `defineWidget` expose backend endpoints at `/api/widget/{name}` because `Widget.build()` creates an Elysia plugin with prefix `widget/{name}` on the `api` router, which is mounted under `/api/*` in `Bun.serve`.",
+      "evidence": [
+        {
+          "resource": "repo://src/index.ts#L22-L27",
+          "version": "repo-lines-v1:sha256:da9e5d2d0825d15ad5c8a4fc3256c856413256652c29a8d66e20efaac52a816d:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTkyNDIzZmIwMDI3YjdjYTg3MWU0YjBmNTgzZmQyMzBhMjQwYTYwOTAyZTkzYmU1MDc5MjlkMzdjM2RlNjc4ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjZmNWI0MGIxNTg0NTdkMTc4NjRmMjE3OTA3ODZkZDVhMmVjZGI2NGI2NmE2NTFmNzg4ZDRlMjVjZDMzMDNkMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMGFlODI0NzgxMjFkNWMwMDQ4MGNiYjljODQ3YzczNGQ3NGE2Y2EwMDA4YjA0OGU3N2I5YjUzODFhZjc0NDg5ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjIsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTM1MmM4OWZjMTAxNWMxN2ZjYjM2YjU0MTIyNTc3ZDEyNzU1ZmI1OWExY2RmYmQzY2ZhNjNlOGI5NzEyMzYyNyJ9"
+        },
+        {
+          "resource": "repo://src/index.ts#L6-L6",
+          "version": "repo-lines-v1:sha256:e06bfa1431373b95eb34c947439090cf215c33970ccac660daab7800d3bca110:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTA2YmZhMTQzMTM3M2I5NWViMzRjOTQ3NDM5MDkwY2YyMTVjMzM5NzBjY2FjNjYwZGFhYjc4MDBkM2JjYTExMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTA2YmZhMTQzMTM3M2I5NWViMzRjOTQ3NDM5MDkwY2YyMTVjMzM5NzBjY2FjNjYwZGFhYjc4MDBkM2JjYTExMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWE4NjhkOWIwYWYzN2QxMWFmNGMyZTEzOTI3ZDAwOGZlMzcyNDIwYjRjNTdjYzkxZWIyYTk3ZWE3Y2FmYjc3NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWUzMGVkMzYxMzZhMzdiZjMwNWM3Y2VkNWRmYzYyMGM1MTVhMDRhZjc3MDg2YzI3ZjE2MjU5OTNlZjY2ZGM1ZSJ9"
+        },
+        {
+          "resource": "repo://src/lib/builder.tsx#L61-L66",
+          "version": "repo-lines-v1:sha256:9867f51a93e3686e569752c33912f1514fde5a999c46999d5253d6b056f8e266:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzZiOGUzNmU4NTQ0NDY1YzVjMmYyM2ExZGJiM2QzYWE1YmZlNTY2YjY3OTNhNjc2ODE4NjZkNTcyMWIxNjQ2ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzE3YWYxMTAxYzk3YjdjMmY1MjU0MDc4MmU2MzRjYzQ0NDBmMGU5NzAzNDFlNTJmOTc1MjMxMWQ3OGI3ZDdkMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWRiNTY1ZjI2NTg2MjA2YWUxMGQ4Y2MwNzM2ZDBjZjMwOWQxYTYxOTZmNTI3MDI2MWJkNGEwMDMxYmNkMzJmZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjkwZDVjMmE5MDhmM2E0Zjk0MjQ3MjE1N2YzOGFlYjJhYTI5ODE0YThlMGE4NDFjNzBjZTZkNDM5NTI3MDllZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_337187f503e648e89ddba2afe5973f73",
+      "statement": "`src/lib/builder.tsx` supports both static widgets that only render a template and dynamic widgets that declare a TypeBox query schema, a backend handler, and a data-receiving template.",
+      "evidence": [
+        {
+          "resource": "repo://src/lib/builder.tsx#L107-L109",
+          "version": "repo-lines-v1:sha256:f0fb7978422f204226a38542e6e92eb0b078a0d5178cf9369fbcc0bfbc99727b:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzJlNzg0MDhmMDQ1N2NjZGIxM2VmZmE1MGMwNzQyZWEyMGNhMWE2YjAwMTU3ODJiODc5NmY2MjY1YzJiNjI5MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODEwMGNjNmM1MmM4ZDNlMTFiMWExM2RkMmNmM2JlMTNlMTdkZWRiYjU5ODc1NjUwYzIzNTg1MmRmMzM3MzA1YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTBkYzY2MjVlN2ZjZGVjZTNkZjcyYWY0ZjdlY2UwZTUyYTg0NzE5MzA2YjY4NWE0ODUyYjkxMzM0YWFmOTFhMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://src/lib/builder.tsx#L16-L59",
+          "version": "repo-lines-v1:sha256:efafb4b03a0085c95cfb00d645c7e612f7df62c3171462e419a1b5bdff567a1e:eyJzZWxlY3RlZExpbmVDb3VudCI6NDQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlkNmM1OTdmZmM5NjJkMjU5MDhlOGY1OTU3ZjBmZjkxMTcwODc4MTRmZWMxODA2YjZkNzQ0MjAzNzhmYmM0ZmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI0NTIzODhlNDkxMmUwMTJhODMwMDdiZjkxZDQwNDcyM2YwMGY5YmJkZWQwZGVjYTgwOTMwNjNjNGE4MzQ3MGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU3YWE2ZGYwNWNlMjZkMzg0YzQ0Yjg2Y2JkZWQyNDQ2OTdhOGE5MDM0ODdlY2UzM2MxZTQyMjBkYTllMGQyM2YifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fa782974bb55485bb96c901714b661ab",
+      "statement": "`src/App.tsx` provides the page layout, wraps the tree in a TanStack Query `QueryClientProvider`, and renders the widgets passed in as a prop in the first small page column.",
+      "evidence": [
+        {
+          "resource": "repo://src/App.tsx#L1-L42",
+          "version": "repo-lines-v1:sha256:0a4b39ba5ee1491eed08642aa1c5bd149f66b7a406daaa88fde2b14def1d62ba:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI1OTA5NjViZjllZjFmMGQxYmUwY2YwNDY4NDVjNTYzMTM4MjU4ZjgxODBmNTY5ODZkNjJkMDQwNjZiNDE1NWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNlOTU5NmY0YmE3N2QwZWFmMTIxMjY3ZTcxODk1MDY3ZWE4NTQ0YTc4YTY3YmVkMjIyODJhMzJlYjk0OGVkYTAifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.2",
+    "at": "2026-09-17T14:20:27.519Z"
+  }
+}
