@@ -3,67 +3,70 @@ import { Elysia, type AnyElysia } from "elysia";
 import type React from "react";
 import { useQuery } from "@tanstack/react-query";
 
-// --- Input del defineWidget ---
-
-export type WidgetWithoutBackend = {
-  name: string;
-  query?: never;
-  backend?: never;
-  template: () => React.ReactElement;
-};
-
-export type WidgetWithBackend<TQuery extends TObject<TProperties>, TData> = {
-  name: string;
-  query: TQuery;
-  defaultQuery?: Static<TQuery>; 
-  backend: (context: { query: Static<TQuery> }) => TData | Promise<TData>;
-  template: (props: { data: Awaited<TData> }) => React.ReactElement;
-};
-
-// --- Output del defineWidget ---
+// --- TIPI DI OUTPUT ---
 
 export type WidgetDefinition<TQuery extends TObject<TProperties> = any, TData = any> = {
   name: string;
   backend?: AnyElysia;
-  Component: React.FC<{ defaultQuery?: Static<TQuery> }>;
+  Component: React.FC;
 };
 
-// --- Type Guard per forzare il Narrowing sui Generici ---
-function hasBackend<TQuery extends TObject<TProperties>, TData>(
-  config: WidgetWithBackend<TQuery, TData> | WidgetWithoutBackend
-): config is WidgetWithBackend<TQuery, TData> {
-  return "query" in config && config.query !== undefined;
-}
+// --- CONFIGURAZIONI ---
 
-// --- OVERLOADS ---
+export type StaticWidgetConfig = {
+  name: string;
+  template: () => React.ReactElement;
+};
 
-export function defineWidget(
-  config: WidgetWithoutBackend
-): WidgetDefinition<never, void>;
+export type DynamicWidgetConfig<TQuery extends TObject<TProperties>, TData> = {
+  name: string;
+  query: TQuery;
+  defaultQuery: Static<TQuery>;
+  backend: (context: { query: Static<TQuery> }) => TData | Promise<TData>;
+  template: (props: { data: Awaited<TData> }) => React.ReactElement;
+};
 
-export function defineWidget<TQuery extends TObject<TProperties>, TData>(
-  config: WidgetWithBackend<TQuery, TData>
-): WidgetDefinition<TQuery, TData>;
+// --- CLASSE WIDGET ---
 
-// --- IMPLEMENTAZIONE ---
+export class Widget<TQuery extends TObject<TProperties> = any, TData = any> {
+  public readonly name: string;
+  public readonly query?: TQuery;
+  public readonly defaultQuery: Static<TQuery>;
+  public readonly backendHandler?: (context: { query: Static<TQuery> }) => TData | Promise<TData>;
+  public readonly template: React.ComponentType<any>;
 
-export function defineWidget<TQuery extends TObject<TProperties>, TData>(
-  config: WidgetWithBackend<TQuery, TData> | WidgetWithoutBackend
-): WidgetDefinition<TQuery, TData> {
-  
-  if (hasBackend(config)) {
-    const { name, query, backend, template: Template } = config;
+  // Overload 1: Widget con Backend
+  constructor(config: DynamicWidgetConfig<TQuery, TData>);
+  // Overload 2: Widget Statico
+  constructor(config: StaticWidgetConfig);
+  // Implementazione Costruttore
+  constructor(config: any) {
+    this.name = config.name;
+    this.query = config.query;
+    this.defaultQuery = config.defaultQuery;
+    this.backendHandler = config.backend;
+    this.template = config.template;
+  }
+
+  public build(): WidgetDefinition<TQuery, TData> {
+    const { name, query, defaultQuery, backendHandler, template: Template } = this;
+
+    if (!query || !backendHandler) {
+      return {
+        name,
+        Component: () => <Template />,
+      } as WidgetDefinition<TQuery, TData>;
+    }
 
     const backendPlugin = new Elysia({ prefix: `widget/${name}` })
       .get("/", async ({ query: reqQuery }) => {
-        const result = await backend({ query: reqQuery as Static<TQuery> });
-        return result;
-      }, {
-        query: query,
+        return await backendHandler({ query: reqQuery as Static<TQuery> });
+      },{
+        query
       });
 
-    const Component: React.FC<{ defaultQuery?: Static<TQuery> }> = ({ defaultQuery: overrideQuery }) => {
-      const activeQuery = overrideQuery ?? config.defaultQuery;
+    const Component: React.FC = () => {
+      const activeQuery = defaultQuery;
 
       const { isPending, error, data } = useQuery({
         queryKey: [name, activeQuery],
@@ -79,16 +82,16 @@ export function defineWidget<TQuery extends TObject<TProperties>, TData>(
             const queryString = params.toString();
             if (queryString) searchParams = `?${queryString}`;
           }
-        
+
           const res = await fetch(`/api/widget/${name}${searchParams}`);
           if (!res.ok) throw new Error("Errore recupero dati");
           return res.json();
-        }
+        },
       });
-    
+
       if (isPending) return <div className="widget-loading">Caricamento {name}...</div>;
       if (error || !data) return <div className="widget-error">Errore caricamento {name}</div>;
-    
+
       return <Template data={data} />;
     };
 
@@ -98,12 +101,9 @@ export function defineWidget<TQuery extends TObject<TProperties>, TData>(
       Component,
     };
   }
-
-  // Fuori dall'if, config viene ristretto a WidgetWithoutBackend
-  const Template = config.template;
-
-  return {
-    name: config.name,
-    Component: () => <Template />,
-  } as WidgetDefinition<TQuery, TData>;
 }
+
+// Helper opzionale per chi preferisce la sintassi 'createWidget' senza 'new'
+export const defineWidget = <TQuery extends TObject<TProperties>, TData>(
+  config: DynamicWidgetConfig<TQuery, TData>
+) => new Widget(config).build();

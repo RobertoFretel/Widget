@@ -4,11 +4,8 @@ import { defineWidget } from "../builder";
 export const Prova = defineWidget({
   name: "prova",
   query: t.Object({
-    location: t.String()
+    location: t.String(),
   }),
-  defaultQuery: {
-    location: "Perugia"
-  },
   backend({ query }) {
     return {
       message: query.location
@@ -18,5 +15,8 @@ export const Prova = defineWidget({
     return (
       <main>Ciaoo sono dentro prova: {data.message}</main>
     )
+  },
+  defaultQuery: {
+    location: "Lazio"
   }
 });
