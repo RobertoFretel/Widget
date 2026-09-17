@@ -12,13 +12,24 @@ import { WIDGETS } from "./lib/widgets";
 
 const widgets = WIDGETS.map(widget => {
   const Component = widget.Component;
-  return <Component key={widget.name} />;
+  return {
+    widget: <Component key={widget.name} />,
+    size: widget.size
+  }
 });
+
+const widgetsByColumn = widgets.reduce<Record<"left" | "center" | "right", React.ReactElement[]>>(
+  (acc, item) => {
+    acc[item.size].push(item.widget);
+    return acc;
+  },
+  { left: [], center: [], right: [] }
+);
 
 const elem = document.getElementById("root")!;
 const app = (
   <StrictMode>
-    <App widgets={widgets} />
+    <App widgets={widgetsByColumn} />
   </StrictMode>
 );
 

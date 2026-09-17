@@ -3,7 +3,7 @@ import Logo from "./assets/logo";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const queryClient = new QueryClient()
 
-export const App: React.FC<{ widgets: Array<React.ReactElement> }> = ({ widgets }) => {
+export const App: React.FC<{ widgets: Record<"right" | "left" | "center", React.ReactElement[]> }> = ({ widgets }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="flex flex-column body-content">
@@ -19,13 +19,13 @@ export const App: React.FC<{ widgets: Array<React.ReactElement> }> = ({ widgets 
             <div className="page-content" id="page-content">
               <div className="page-columns">
                 <div className="page-column page-column-small">
-                  {widgets.map((widget) => widget)}
+                  {widgets.left.map(w => w)}
                 </div>
-    
                 <div className="page-column page-column-full">
-                
+                  {widgets.center.map(w => w)}
                 </div>
                 <div className="page-column page-column-small">
+                  {widgets.right.map(w => w)}
                 </div>
               </div>
             </div>

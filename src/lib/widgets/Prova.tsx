@@ -3,6 +3,7 @@ import { defineWidget } from "../builder";
 
 export const Prova = defineWidget({
   name: "prova",
+  size: "right",
   query: t.Object({
     location: t.String(),
   }),

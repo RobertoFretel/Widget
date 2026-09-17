@@ -9,6 +9,7 @@ export type WidgetDefinition<TQuery extends TObject<TProperties> = any, TData = 
   name: string;
   backend?: AnyElysia;
   Component: React.FC;
+  size: "left" | "center" | "right";
 };
 
 // --- CONFIGURAZIONI ---
@@ -20,6 +21,7 @@ export type StaticWidgetConfig = {
 
 export type DynamicWidgetConfig<TQuery extends TObject<TProperties>, TData> = {
   name: string;
+  size: "left" | "center" | "right";
   query: TQuery;
   defaultQuery: Static<TQuery>;
   backend: (context: { query: Static<TQuery> }) => TData | Promise<TData>;
@@ -30,6 +32,7 @@ export type DynamicWidgetConfig<TQuery extends TObject<TProperties>, TData> = {
 
 export class Widget<TQuery extends TObject<TProperties> = any, TData = any> {
   public readonly name: string;
+  public readonly size: "left" | "center" | "right";
   public readonly query?: TQuery;
   public readonly defaultQuery: Static<TQuery>;
   public readonly backendHandler?: (context: { query: Static<TQuery> }) => TData | Promise<TData>;
@@ -46,15 +49,17 @@ export class Widget<TQuery extends TObject<TProperties> = any, TData = any> {
     this.defaultQuery = config.defaultQuery;
     this.backendHandler = config.backend;
     this.template = config.template;
+    this.size = config.size;
   }
 
   public build(): WidgetDefinition<TQuery, TData> {
-    const { name, query, defaultQuery, backendHandler, template: Template } = this;
+    const { name, query, defaultQuery, backendHandler, template: Template, size } = this;
 
     if (!query || !backendHandler) {
       return {
         name,
         Component: () => <Template />,
+        size: size
       } as WidgetDefinition<TQuery, TData>;
     }
 
@@ -99,6 +104,7 @@ export class Widget<TQuery extends TObject<TProperties> = any, TData = any> {
       name,
       backend: backendPlugin,
       Component,
+      size: size
     };
   }
 }
