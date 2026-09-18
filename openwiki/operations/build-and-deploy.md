@@ -3,15 +3,14 @@ type: build and deployment guide
 title: Build & Deployment
 description: How to develop, build, and run the Glance application with Bun, including the npm scripts, the `BUN_PUBLIC_*` environment-variable filter, and production serving.
 tags: [build, deployment, bun, operations, environment-variables]
+verified:
+  - by: openwiki/0.5.2
+    at: 2026-09-17T21:48:00.351Z
 sources:
   - id: openwiki-source-7dc952d611a75d93fb9b2fb5
     resource: repo://bunfig.toml
   - id: openwiki-source-5b54a58d1b51cd490b0e7162
     resource: repo://package.json
-  - id: openwiki-source-23775c3de52f3ab95a13cb8b
-    resource: repo://README.md
-  - id: openwiki-source-54631e6ebf1d3b815c4a5eed
-    resource: repo://src/App.tsx
   - id: openwiki-source-0103481f4eeeafa16742c4ee
     resource: repo://src/frontend.tsx
   - id: openwiki-source-7335dab2b9628607110f6b96
@@ -20,7 +19,7 @@ sources:
     resource: repo://src/index.ts
   - id: openwiki-source-98d5ddb014a0fd4d678f6f2a
     resource: repo://tsconfig.json
-generated: { by: "openwiki/0.5.2", at: "2026-09-17T14:20:27.519Z" }
+generated: { by: "openwiki/0.5.2", at: "2026-09-17T21:48:00.351Z" }
 ---
 
 # Build & Deployment
@@ -105,7 +104,7 @@ No source file currently reads `process.env` or `import.meta.env`, so the `BUN_P
 
 - **Build before starting in production.** `bun start` assumes `dist/` exists; if it is missing, the server may serve an unbundled or broken frontend. The normal production flow is `bun run build && bun start`.
 - **Single server entry point.** `src/index.ts` is used by both `dev` and `start`; changes there affect both environments.
-- **No server-side rendering.** The server delivers `index.html` as-is and React mounts in the browser. The production build only changes how the assets are bundled, not how the page is served.
+- **No server-side rendering.** The server delivers `src/index.html` as-is; the document body has `id="root"` and contains only the script tag, and React mounts the UI client-side via `createRoot` in `src/frontend.tsx`. The production build only changes how the assets are bundled, not how the page is served.
 - **Secrets must not use the `BUN_PUBLIC_` prefix.** Any variable with that prefix is eligible to be embedded in the client bundle or served to the browser.
 - **`dist/` is excluded from TypeScript.** This prevents build artifacts from causing type-check errors, but it also means `dist/` is not validated by `tsc`.
 - **Hot reload is a dev-only feature.** The `--hot` flag is not present in the `start` script, and the `import.meta.hot.data` fallback is only meaningful during development.

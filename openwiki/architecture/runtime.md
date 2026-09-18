@@ -1,8 +1,11 @@
 ---
 type: runtime architecture
 title: Runtime Architecture
-description: How the Bun HTTP server routes requests, mounts the Elysia API, bundles the React frontend, hydrates the page, and loads widget plugins end-to-end.
+description: How the Bun HTTP server routes requests, mounts the Elysia API, bundles the React frontend, renders the page, and loads widget plugins end-to-end.
 tags: [architecture, runtime, bun, elysia, react, widgets]
+verified:
+  - by: openwiki/0.5.2
+    at: 2026-09-17T21:48:00.351Z
 sources:
   - id: openwiki-source-7dc952d611a75d93fb9b2fb5
     resource: repo://bunfig.toml
@@ -20,32 +23,32 @@ sources:
     resource: repo://src/lib/builder.tsx
   - id: openwiki-source-a18f0915862c0e1e6ec66443
     resource: repo://src/lib/widgets/index.ts
-  - id: openwiki-source-1f9ee90fb1d98134f79becce
-    resource: repo://src/lib/widgets/Prova.tsx
-generated: { by: "openwiki/0.5.2", at: "2026-09-17T14:20:27.519Z" }
+generated: { by: "openwiki/0.5.2", at: "2026-09-17T21:48:00.351Z" }
 ---
 
 # Runtime Architecture
 
-This page describes the end-to-end runtime of the application: how the Bun HTTP server serves the React frontend, how the Elysia API is mounted, how the frontend is bundled and hydrated, and how widgets extend both the backend and the UI.
+This page describes the end-to-end runtime of the application: how the Bun HTTP server serves the React frontend, how the Elysia API is mounted, how the frontend is bundled and rendered, and how widgets extend both the backend and the UI.
 
 ## Overview
 
-The project is a Bun-first full-stack application. The same runtime starts a production-grade HTTP server, bundles the frontend assets, serves the HTML entry point, and mounts a type-safe Elysia API. Widgets are the primary extension mechanism: each widget can register a backend route and a React component that fetches its own data.
+The project is a Bun-first full-stack application. The same runtime starts a production-grade HTTP server, bundles the frontend assets, serves the HTML entry point, and mounts a type-safe Elysia API. Widgets are the primary extension mechanism: each widget can register a backend route and a React component that fetches its own data. A widget can opt into live updates through a Server-Sent Events endpoint.
 
 ```mermaid
 flowchart TD
     User[Browser] -->|HTTP request| Bun[Bun serve]
     Bun -->|/api/*| Elysia[Elysia API]
     Elysia -->|widget/${name}| WidgetBE[Widget backend plugin]
+    Elysia -->|widget/${name}/events| WidgetSSE[Widget SSE stream]
     Bun -->|/*| HTML[index.html]
     HTML --> Bundle[Bun-bundled frontend.tsx]
-    Bundle --> React[React hydration]
+    Bundle --> React[React client render]
     React --> Widgets[Widget React components]
     Widgets -->|fetch /api/widget/${name}| WidgetBE
+    Widgets -->|EventSource /api/widget/${name}/events| WidgetSSE
 ```
 
-_Server, frontend, and widget request flow._
+_Server, frontend, and widget request flow including the optional SSE update channel._
 
 ## Server entry point
 
@@ -99,7 +102,7 @@ const server = serve({
 
 Bun's static-file serving handles the favicon, fonts, and compiled assets referenced from `index.html`.
 
-## Frontend entry point and hydration
+## Frontend entry point and client-side rendering
 
 ### HTML entry point
 
@@ -124,52 +127,72 @@ The body is the React root. In development Bun serves `frontend.tsx` directly an
 
 ### React root and hot reload
 
-`src/frontend.tsx` creates or reuses a React root, renders the `App` component, and supports Bun's module hot reload:
+`src/frontend.tsx` maps every registered widget to its React element, groups the elements by the widget's declared `size` into `left`, `center`, and `right` arrays, and passes those arrays to `App`. It then creates or reuses a React root and renders the `App` component. The `import.meta.hot.data.root` pattern preserves the React root across Bun module hot reloads:
 
 ```ts
-const elem = document.getElementById("root")!
+const widgets = WIDGETS.map(widget => {
+  const Component = widget.Component;
+  return {
+    widget: <Component key={widget.name} />,
+    size: widget.size
+  }
+});
+
+const widgetsByColumn = widgets.reduce<Record<"left" | "center" | "right", React.ReactElement[]>>(
+  (acc, item) => {
+    acc[item.size].push(item.widget);
+    return acc;
+  },
+  { left: [], center: [], right: [] }
+);
+
+const elem = document.getElementById("root")!;
 const app = (
   <StrictMode>
-    <App widgets={widgets} />
+    <App widgets={widgetsByColumn} />
   </StrictMode>
-)
+);
 
-(import.meta.hot.data.root ??= createRoot(elem)).render(app)
+(import.meta.hot.data.root ??= createRoot(elem)).render(app);
 ```
 
-The `import.meta.hot.data.root` pattern preserves the React root across hot reloads, so updated modules re-render without losing React state or unmounting the tree.
+This preserves React state across hot reloads, so updated modules re-render without unmounting the tree. Each widget is rendered with `key={widget.name}`, which keeps React reconciliation stable across the list.
 
 ### App layout
 
-`src/App.tsx` renders the page chrome: header with the logo, a three-column main area, and a footer. The center column is currently empty; widgets are rendered in the first small column. It also wraps the tree in a single `QueryClientProvider` from TanStack Query so widgets can use `useQuery`.
+`src/App.tsx` renders the page chrome: header with the logo, a three-column main area, and a footer. It wraps the tree in a single `QueryClientProvider` from TanStack Query so widgets can use `useQuery`. Widgets are placed in the column matching their `size`: `left` and `right` widgets render in the narrow side columns, while `center` widgets render in the wide middle column.
 
 ## Widget plugin model
 
 Widgets are the main extension point. Each widget is a self-contained unit that can define:
 
 - a `name` used as a route segment and React key;
+- a `size` of `left`, `center`, or `right` that decides which column renders it;
 - an optional Elysia backend plugin under `/api/widget/${name}`;
+- an optional `update: true` flag that also exposes `/api/widget/${name}/events` and makes the frontend consume it via Server-Sent Events;
 - a React component that fetches from its own backend.
 
 The widget registry is the plain array exported from `src/lib/widgets/index.ts`:
 
 ```ts
-import { Prova } from "./Prova"
+import { Meteo } from "./Meteo";
+import { Sistema } from "./Sistema";
 
-export const WIDGETS = [Prova]
+export const WIDGETS = [Meteo, Sistema]
 ```
 
 Both the server and the frontend import this same array, so widgets are registered in exactly one place.
 
 ### Widget builder
 
-`src/lib/builder.tsx` exports the `Widget` class and a `defineWidget` helper. A widget can be static (no backend) or dynamic (backend + typed query + default query).
+`src/lib/builder.tsx` exports the `Widget` class and a `defineWidget` helper. A widget can be static (no backend) or dynamic (backend + typed query + default query). Dynamic widgets can additionally opt into live updates with `update: true`.
 
 For dynamic widgets, `build()`:
 
 1. Creates an Elysia plugin at `widget/${name}` with a `GET /` route.
 2. Validates the incoming query string with a TypeBox schema.
-3. Returns a React component that calls `useQuery` with the widget's `defaultQuery`, builds the URL `/api/widget/${name}?...`, and renders the provided `template` with the fetched `data`.
+3. If `update` is true, adds a `GET /events` route that returns a `text/event-stream` response and re-evaluates the backend handler every 5000 milliseconds.
+4. Returns a React component that either calls `useQuery` to fetch `/api/widget/${name}` or uses `useSseWidget` to listen on `/api/widget/${name}/events`, then renders the provided `template` with the fetched `data`.
 
 The current implementation always uses `defaultQuery` as the active query; there is no runtime UI for changing parameters yet.
 
@@ -181,45 +204,52 @@ sequenceDiagram
     participant Elysia as Elysia API
     participant WidgetBE as Widget backend plugin
 
-    Browser->>React: hydrate App
+    Browser->>React: render App
     React->>WidgetComp: mount widget
-    WidgetComp->>WidgetComp: useQuery(defaultQuery)
-    WidgetComp->>Elysia: GET /api/widget/${name}?location=Lazio
+    alt update is false
+        WidgetComp->>WidgetComp: useQuery(defaultQuery)
+        WidgetComp->>Elysia: GET /api/widget/${name}?city=Perugia
+    else update is true
+        WidgetComp->>Browser: EventSource /api/widget/${name}/events
+    end
     Elysia->>WidgetBE: route to widget/${name}
     WidgetBE->>WidgetBE: validate query with TypeBox
     WidgetBE-->>WidgetComp: JSON data
     WidgetComp->>React: render template(data)
 ```
 
-_Widget data fetch from hydration to backend response._
+_Widget data fetch from mount to backend response, showing both the request/response and SSE paths._
 
-### Example widget
+### Example widgets
 
-`src/lib/widgets/Prova.tsx` is the reference implementation:
+`src/lib/widgets/Meteo.tsx` and `src/lib/widgets/Sistema.tsx` illustrate the two dynamic patterns currently in use.
+
+**Meteo** is a request/response widget in the `left` column. Its backend geocodes a city with the Open-Meteo geocoding API and then fetches current conditions and a multi-day forecast. The default query targets Perugia:
 
 ```ts
-export const Prova = defineWidget({
-  name: "prova",
-  query: t.Object({
-    location: t.String(),
-  }),
-  backend({ query }) {
-    return {
-      message: query.location
-    }
-  },
-  template: ({ data }) => {
-    return (
-      <main>Ciaoo sono dentro prova: {data.message}</main>
-    )
-  },
-  defaultQuery: {
-    location: "Lazio"
-  }
-})
+export const Meteo = defineWidget<typeof querySchema, WeatherData>({
+  name: "meteo",
+  size: "left",
+  query: querySchema,
+  defaultQuery: { city: "Perugia" },
+  async backend({ query }) { /* ... */ },
+  template: ({ data }) => { /* ... */ },
+});
 ```
 
-It expects a `location` string, echoes it from the backend, and renders it in the widget template.
+**Sistema** is a live-update widget in the `right` column. It reads CPU, memory, load average, and uptime from `/proc` on Linux and streams updates through Server-Sent Events because `update: true` is set:
+
+```ts
+export const Sistema = defineWidget({
+  name: "sistema",
+  size: "right",
+  query: querySchema,
+  defaultQuery: {},
+  update: true,
+  async backend() { /* ... */ },
+  template: ({ data }) => { /* ... */ },
+});
+```
 
 ## Build and run modes
 
@@ -261,10 +291,12 @@ Only environment variables prefixed with `BUN_PUBLIC_` are exposed to the fronte
 ## Configuration and invariants
 
 - **Single source of truth for widgets**: the `WIDGETS` array in `src/lib/widgets/index.ts` is imported by both `src/index.ts` and `src/frontend.tsx`. Adding or removing a widget there changes both the API surface and the rendered UI.
+- **Widget column assignment**: each widget declares a `size` of `left`, `center`, or `right`. `frontend.tsx` groups widgets by that value, and `App.tsx` renders each group in the matching column.
 - **API prefix is applied twice**: Elysia is constructed with `prefix: 'api'`, and the Bun route table also mounts `api.fetch` under `/api/*`. The result is that widget endpoints are reachable at `/api/widget/${name}`.
 - **No server-side rendering**: React is rendered entirely in the browser. `index.html` contains no pre-rendered markup.
 - **Query defaults are hard-coded**: dynamic widgets use `defaultQuery` for every mount. To make a widget configurable at runtime, the widget component must be extended to accept and send different query parameters.
-- **Type safety across the boundary**: `export type Api = typeof api` lets Eden generate a type-safe client, although the current widgets use plain `fetch`.
+- **SSE update interval is fixed**: widgets with `update: true` re-evaluate their backend every 5000 milliseconds and stream the result through an `EventSource`.
+- **Type safety across the boundary**: `export type Api = typeof api` lets Eden generate a type-safe client, although the current widgets use plain `fetch` and `EventSource`.
 
 ## Failure modes
 
@@ -272,10 +304,11 @@ Only environment variables prefixed with `BUN_PUBLIC_` are exposed to the fronte
 - If a widget's `fetch` fails or returns a non-OK response, the widget renders `<div className="widget-error">Errore caricamento {name}</div>`.
 - While data is loading, the widget renders `<div className="widget-loading">Caricamento {name}...</div>`.
 - If a widget has no `backend`, `build()` returns only a `Component`; no route is registered for it.
+- If an SSE connection breaks, the hook surfaces an error and the widget renders the same error markup.
 
 ## Extension points
 
 - Add a widget by creating a new file under `src/lib/widgets/`, exporting a widget built with `defineWidget`, and adding it to the `WIDGETS` array.
 - Change API-wide behavior by editing `src/index.ts`, for example adding global middleware, authentication, or CORS.
-- Change the page layout by editing `src/App.tsx`; widgets are passed in as a prop and rendered in the first small column by default.
+- Change the page layout by editing `src/App.tsx`; widgets are passed in grouped by `left`, `center`, and `right`.
 - Replace plain `fetch` inside widgets with the Eden client to gain end-to-end type safety using the exported `Api` type.

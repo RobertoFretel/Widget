@@ -1,13 +1,11 @@
 ---
 type: workflow
 title: Adding a Widget
-description: Step-by-step workflow to add a new widget to the Glance app, from choosing a static or dynamic widget to registering it and verifying the backend route and frontend UI.
+description: Step-by-step workflow to add a new widget to the Glance app, covering static widgets, dynamic widgets, and the optional Server-Sent Events update mode.
 tags: [widgets, workflow, backend, frontend]
 sources:
   - id: openwiki-source-5b54a58d1b51cd490b0e7162
     resource: repo://package.json
-  - id: openwiki-source-54631e6ebf1d3b815c4a5eed
-    resource: repo://src/App.tsx
   - id: openwiki-source-0103481f4eeeafa16742c4ee
     resource: repo://src/frontend.tsx
   - id: openwiki-source-d1fbef09192ffbab6eff0bc2
@@ -16,7 +14,10 @@ sources:
     resource: repo://src/lib/builder.tsx
   - id: openwiki-source-a18f0915862c0e1e6ec66443
     resource: repo://src/lib/widgets/index.ts
-generated: { by: "openwiki/0.5.2", at: "2026-09-17T14:20:27.519Z" }
+generated: { by: "openwiki/0.5.2", at: "2026-09-17T21:48:00.351Z" }
+verified:
+  - by: openwiki/0.5.2
+    at: 2026-09-17T21:48:00.351Z
 ---
 
 # Adding a Widget
@@ -28,7 +29,7 @@ For the underlying machinery, see [Widget Framework](/openwiki/architecture/widg
 ## 1. Decide whether the widget is static or dynamic
 
 - **Static widget** — renders markup only, never fetches data.
-- **Dynamic widget** — declares a TypeBox query schema, a backend handler, and a template that receives fetched data.
+- **Dynamic widget** — declares a TypeBox query schema, a backend handler, and a data-driven template. It can also stream live updates from the backend by setting `update: true`.
 
 ```mermaid
 flowchart TD
@@ -60,9 +61,13 @@ import { defineWidget } from "../builder";
 
 export const Meteo = defineWidget({
   name: "meteo",
+  size: "left",
   query: t.Object({
     city: t.String(),
   }),
+  defaultQuery: {
+    city: "Roma",
+  },
   backend({ query }) {
     return {
       forecast: `Sunny in ${query.city}`,
@@ -76,19 +81,51 @@ export const Meteo = defineWidget({
       </article>
     );
   },
-  defaultQuery: {
-    city: "Roma",
-  },
 });
 ```
 
 Key fields:
 
-- `name` — used as the React `key`, the Elysia route segment, and the base of the TanStack Query cache key.
+- `name` — used as the React `key`, the Elysia route segment, and the base of the cache key.
+- `size` — the column where the widget is rendered: `"left"`, `"center"`, or `"right"`.
 - `query` — a TypeBox schema describing the allowed query string.
 - `defaultQuery` — the initial query. The generated component always starts here; it does not react to props or state.
 - `backend` — the handler that produces the widget data. It receives `{ query }` and may return a value or a `Promise`.
 - `template` — React component that receives `{ data }` and renders the widget UI.
+- `update` — optional boolean that switches the frontend from a TanStack Query fetch to a Server-Sent Events stream. Defaults to `false`.
+
+### Dynamic widget with live updates
+
+Set `update: true` to make the generated component open an `EventSource` to `/api/widget/{name}/events` instead of calling `/api/widget/{name}` through TanStack Query. The backend pushes a new message every five seconds and closes the stream automatically when the component unmounts.
+
+```tsx
+import { t } from "elysia";
+import { defineWidget } from "../builder";
+
+export const Sistema = defineWidget({
+  name: "sistema",
+  size: "right",
+  query: t.Object({}),
+  defaultQuery: {},
+  update: true,
+  async backend() {
+    return {
+      cpuUsage: 12,
+      memory: { usedPercent: 45, usedGB: 7.2, totalGB: 16 },
+      load: { average: 0.4, cores: 8, percent: 5 },
+      uptime: "3h 12m",
+    };
+  },
+  template({ data }) {
+    return (
+      <article className="widget">
+        <h2>Sistema</h2>
+        <p>CPU: {data.cpuUsage}%</p>
+      </article>
+    );
+  },
+});
+```
 
 ### Static widget
 
@@ -99,24 +136,26 @@ import { Widget } from "../builder";
 
 export const Clock = new Widget({
   name: "clock",
+  size: "left",
   template: () => <div className="widget">Current time widget</div>,
 }).build();
 ```
 
-A static widget has no backend route and renders its template immediately.
+A static widget has no backend route and renders its template immediately. Although the static type only lists `name` and `template`, the frontend reads `widget.size` to assign widgets to columns, so `size` must be supplied at runtime.
 
 ## 3. Register the widget
 
 Export the new widget from `src/lib/widgets/index.ts`:
 
 ```ts
-import { Prova } from "./Prova";
 import { Meteo } from "./Meteo";
+import { Sistema } from "./Sistema";
+import { Clock } from "./Clock";
 
-export const WIDGETS = [Prova, Meteo];
+export const WIDGETS = [Meteo, Sistema, Clock];
 ```
 
-This array is the single source of truth. The server uses it to mount backend routes, and the frontend uses it to render components. You do **not** need to edit `src/index.ts` or `src/frontend.tsx`.
+This array is the single source of truth. The server uses it to mount backend routes, and the frontend uses it to render components grouped by column. You do **not** need to edit `src/index.ts` or `src/frontend.tsx`.
 
 ## 4. Run the development server
 
@@ -130,24 +169,33 @@ bun dev
 
 ### Verify the backend endpoint
 
-Dynamic widgets expose `GET /api/widget/{name}`:
+Dynamic widgets expose `GET /api/widget/{name}`. Widgets with `update: true` also expose `GET /api/widget/{name}/events`:
 
 ```bash
 curl "http://localhost:3000/api/widget/meteo?city=Roma"
 # Expected: {"forecast":"Sunny in Roma"}
 ```
 
+For SSE widgets you can test the event stream with curl:
+
+```bash
+curl -N "http://localhost:3000/api/widget/sistema/events"
+# Expected: data: {...}\n\n every 5 seconds
+```
+
 The exact port is printed by `Bun.serve` when the server starts. The route exists because the widget's backend plugin, prefixed with `widget/{name}`, is mounted on the root `api` router.
 
 ### Verify the frontend
 
-Open the server URL in a browser and inspect the widget column on the left. The generated component renders in three states:
+Open the server URL in a browser. The browser entry point maps each widget definition to a React element, groups the elements by `size` into left, center, and right columns, and passes that record to `App`. Inspect the matching column for your widget.
 
-1. **Loading** — a `<div className="widget-loading">` while the query is pending.
-2. **Error** — a `<div className="widget-error">` if the fetch fails, the response is not OK, or data is missing.
+The generated component renders in three states:
+
+1. **Loading** — a `<div className="widget-loading">` while the query is pending or the SSE connection is opening.
+2. **Error** — a `<div className="widget-error">` if the fetch fails, the response is not OK, the SSE connection errors, or data is missing.
 3. **Success** — the custom `template` receives `{ data }`.
 
-If the widget is missing from the page, the most likely cause is forgetting to add it to `WIDGETS` in `src/lib/widgets/index.ts`.
+If the widget is missing from the page, the most likely cause is forgetting to add it to `WIDGETS` in `src/lib/widgets/index.ts` or forgetting to set its `size`.
 
 ## Invariants and things to remember
 
@@ -155,4 +203,6 @@ If the widget is missing from the page, the most likely cause is forgetting to a
 - **No runtime query changes**: the generated component always uses `defaultQuery`. Prop-driven or user-driven queries require replacing the hard-coded `activeQuery` with React state.
 - **TypeBox validation**: Elysia validates incoming query strings against the declared schema before the `backend` handler runs.
 - **Static widgets have no route**: omitting `query` and `backend` creates a static component only.
-- **Backend errors surface as UI errors**: any non-OK response from `/api/widget/{name}` triggers the widget's error markup.
+- **Static widgets still need `size`**: the frontend groups widgets by `size`, so a missing size will crash column assignment even though the type does not require it.
+- **Backend errors surface as UI errors**: any non-OK response from `/api/widget/{name}` or an SSE error from `/api/widget/{name}/events` triggers the widget's error markup.
+- **SSE widgets keep the connection open**: the `EventSource` is closed only when the component unmounts; the backend clears its interval in the stream's `cancel` handler.

@@ -16,11 +16,11 @@ sources:
     resource: repo://src/index.css
   - id: openwiki-source-7335dab2b9628607110f6b96
     resource: repo://src/index.html
+  - id: openwiki-source-bdc56a6bd82716cc6f36a195
+    resource: repo://src/lib/builder.tsx
   - id: openwiki-source-a18f0915862c0e1e6ec66443
     resource: repo://src/lib/widgets/index.ts
-  - id: openwiki-source-98d5ddb014a0fd4d678f6f2a
-    resource: repo://tsconfig.json
-generated: { by: "openwiki/0.5.2", at: "2026-09-17T14:20:27.519Z" }
+generated: { by: "openwiki/0.5.2", at: "2026-09-17T21:48:00.351Z" }
 verified:
   - by: openwiki/0.5.2
     at: 2026-09-17T21:48:00.351Z

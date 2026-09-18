@@ -1,15 +1,11 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:29e1d738e2e6e95452af8cccdd22db192b5e389b45ace87093c2f39395cc4e93",
+  "pageVersion": "sha256:08510c3246f8037430d107c3f273b473ccc85528ce23ba695a5d2182437835d2",
   "claims": [
     {
       "id": "claim_5cb4be86dd1949239a6adbf8469b0fd0",
-      "statement": "The project exposes three lifecycle npm scripts: `dev` runs `bun --hot src/index.ts`, `build` runs `bun build ./src/index.html --outdir=dist --sourcemap --target=browser --minify --define:process.env.NODE_ENV='`production`' --env='BUN_PUBLIC_*'`, and `start` runs `NODE_ENV=production bun src/index.ts`.",
+      "statement": "The project exposes three lifecycle npm scripts: `dev` runs `bun --hot src/index.ts`, `build` runs `bun build ./src/index.html --outdir=dist --sourcemap --target=browser --minify --define:process.env.NODE_ENV='\"production\"' --env='BUN_PUBLIC_*'`, and `start` runs `NODE_ENV=production bun src/index.ts`.",
       "evidence": [
-        {
-          "resource": "repo://README.md#L9-L19",
-          "version": "repo-lines-v1:sha256:9acf9a496f1cb3fd1a435fa705677ceb5af384beed304fff64bfbf8fd0aa9d1f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRkOGRlYjA5ODFlZTU0M2UyMmNlMzI3OWRiOGNmZDQ3Y2YyMzA4MzNiY2JhYmMwNjEyZjI3ZjlkZWY1YzMzNmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ3YzA2YzU2MWQ1YzMyNzM0MzY4NTI2OGE0NmIzMzkxZjM5OThlZWU4OTBkMmJlNTFmMGQyMWNjNGE1M2FlNmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc0OTI5YjAyNGY2ODk3MDVjZmVjMTM1YzZlZGJjZWY4YzI3YzllYzVjOWUwZjNkYWZmMjY1MzUwMjE3NmU5Y2QiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkwMzM5OTJhNWZiMzc5MTk2MWM0MzY4ZTg3MTYyMmVmN2UwMTMyMDhkYjIzYjc0MmQ5YmU5MjBjYTk0YWRmMWUifQ"
-        },
         {
           "resource": "repo://package.json#L6-L10",
           "version": "repo-lines-v1:sha256:937e4613e1fcd7c14ca9406d5f3b47bef180d3dc289ef1ef39d9def2c59e6d7a:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzQ4MzNkNTk0OWMwM2E0MGNhOTUyNDkxNjEwYTY2NTk2NDRiM2FhNDY2MzYyZjc5OTAyMGRiZjE5ODE1NDdkYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGQ1Y2QyZmI0ZjNkZjg4NDUxNTI1NWIzOTUyM2YyZjhiNTQ3MmJlZWE5ZjU2NmZmY2EyMDRkYjgwMjU2MTA0MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWI0ZjZhNDYyZDEyZTExMzc1MGI2NTQzYzQzYzQzMDQ4NjIyOTExNWIyNWE1ZTdhM2E1YzFkNTcyYTU1ZjkxMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzRkYjAyYTdjZTU5M2U2MzU3YjcxYzM1YTE1NGIyMDY0ODEyNjgyMzBjMmY0NjkxZjJkZGM0ZWI0MThjYjM1ZCJ9"
@@ -78,15 +74,11 @@
     },
     {
       "id": "claim_4cec7cceb9cd4a38b2c2034dcc56e26e",
-      "statement": "The application does not use server-side rendering: `src/index.html` delivers an empty `#root` element, and React mounts the UI client-side via `createRoot` in `src/frontend.tsx`.",
+      "statement": "The application does not use server-side rendering: `src/index.html` delivers an HTML shell whose `<body>` element has `id=\"root\"` and contains only the `frontend.tsx` script tag, and React mounts the UI client-side via `createRoot` in `src/frontend.tsx`.",
       "evidence": [
         {
-          "resource": "repo://src/App.tsx#L6-L42",
-          "version": "repo-lines-v1:sha256:f524c3a76b9e946f1a4c89f3c95e0aaaaf219d7311a87b37db7fcaf25b86f083:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZlNzAyNjVkNWI2N2RiMzdiZWE4MDgyM2M5NzgwNmFiMjBhMDkzMTA0ZGViNGJhMWU0NGYzZmVjMmM1MjcyOTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc5ZDIzM2Y1ZGFhYjIxOGQ5YzUxYWU4Y2FhMzU4Y2RlZTdiNTdiN2Y2Y2U0MTQ0N2ZjNjRlM2FlNTM0NjViNTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNlOTU5NmY0YmE3N2QwZWFmMTIxMjY3ZTcxODk1MDY3ZWE4NTQ0YTc4YTY3YmVkMjIyODJhMzJlYjk0OGVkYTAifQ"
-        },
-        {
-          "resource": "repo://src/frontend.tsx#L8-L26",
-          "version": "repo-lines-v1:sha256:bf78f22e87ea92c97a71202a17f9b2634d1fe05328da95326314014bfc3d08bf:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBkYmExYjEyYjI4YzUxZjI2NzQwNWY3MTEzYWE4ZjRlMGY3NTU3MTVlYTViOWM4MDRkZTZhYzU3MDkxNWQ2ZjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFlNGE5NDYxMGMwYTg5MjBiNTEzZGVkOTIwNTE4YzcxMWM3ZjEyMWRiM2I2OWQzZDVjZWVhMGNjMmVjYjJlY2EiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAwNjg3YjA4MjBhYTc5OGJhODQ2ZTA1NWIxZmRkZjk2ODRlYTFmZWEzODkzMTIwOGM1YmExZWQzZjU4MjA5MmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+          "resource": "repo://src/frontend.tsx#L9-L37",
+          "version": "repo-lines-v1:sha256:7c8acc2185c28420981a026e3784f083b62c3560dc8121a79728a65aff01696e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5MWJmOWEzZjZkYmI0NDZjN2Y2MDk5YzUzYjRlYTEzZTk1YjhhOGQ4ZDdmZjQyNzUxYTdiYjJlMzhkMGZjNjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFlNGE5NDYxMGMwYTg5MjBiNTEzZGVkOTIwNTE4YzcxMWM3ZjEyMWRiM2I2OWQzZDVjZWVhMGNjMmVjYjJlY2EiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJiYTk5MmJkYWQ4YTY1YmEwNjNlMmI4NTE5ZWZlZjJkYTA4ZjQwZGQ0YTM0NjJjYzE3MzVhODlhMTVjZTc2NWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
         },
         {
           "resource": "repo://src/index.html#L1-L12",
@@ -125,6 +117,6 @@
   ],
   "verification": {
     "by": "openwiki/0.5.2",
-    "at": "2026-09-17T14:20:27.519Z"
+    "at": "2026-09-17T21:48:00.351Z"
   }
 }

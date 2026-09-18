@@ -1,27 +1,7 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:ab1db30936a4a75ca194c395318374533fd096f9e68dc6bf4c4cd6fd03f4d8e0",
+  "pageVersion": "sha256:8c64e83c6669102a1fbfd58acead28e11444627772db637a9086177643e482b2",
   "claims": [
-    {
-      "id": "claim_c1a4171c4a9d4fca8322b4d586218439",
-      "statement": "The widget framework supports two widget shapes: static widgets that render markup only, and dynamic widgets that declare a TypeBox query schema, a backend handler, and a data-driven template.",
-      "evidence": [
-        {
-          "resource": "repo://src/lib/builder.tsx#L8-L59",
-          "version": "repo-lines-v1:sha256:1a7df1fc536463bb12c7b4ad251a2a120471ca8218b0a08483a637a0e31566d8:eyJzZWxlY3RlZExpbmVDb3VudCI6NTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgwZTJkNTUxNDAyNDQxNDE3NTkzZDc0YjkyYjdlOGRlZDkxZGNmNGRjNGFlM2U0OTY4MWJhZDliMGJmY2YwNTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ0YjM4ZjkzNjc3NWEyNWJmMGJmZTJiMWE0NmI0MGFkNWQxZTFhNTZmZjc4MjEzZTdiZGU1OGRhOTE0ZWFmZmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU3YWE2ZGYwNWNlMjZkMzg0YzQ0Yjg2Y2JkZWQyNDQ2OTdhOGE5MDM0ODdlY2UzM2MxZTQyMjBkYTllMGQyM2YifQ"
-        }
-      ]
-    },
-    {
-      "id": "claim_73f328b317d241bb90b5c4515f55e0c4",
-      "statement": "Calling defineWidget produces a WidgetDefinition containing an Elysia backend plugin (for dynamic widgets) and a React component.",
-      "evidence": [
-        {
-          "resource": "repo://src/lib/builder.tsx#L51-L103",
-          "version": "repo-lines-v1:sha256:7be5996808e49ac54eed7ab6cd0b3d0de5b469c752e2972d7aa74da68f4c6114:eyJzZWxlY3RlZExpbmVDb3VudCI6NTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgyOTk3YzQyNDVlZTZmYmVmM2RkYmU2MWQ3OWJmMmRiM2E2NmNlYTlkYzBhZjk5Y2ZiNTRlNDYyNjYxOTQ0YTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcyZTMwZGExNzQ1YmZkNTVmNjYzYjY1ODA5MmY1MTYwMWU4YzNlYjQ0NjJhZmU1YjI2NDI4ZTM0MDlhMmFmM2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUwZGM2NjI1ZTdmY2RlY2UzZGY3MmFmNGY3ZWNlMGU1MmE4NDcxOTMwNmI2ODVhNDg1MmI5MTMzNGFhZjkxYTAifQ"
-        }
-      ]
-    },
     {
       "id": "claim_ba8d6d2799ff4c6ab4c1b4f6b1fbd233",
       "statement": "Dynamic widgets expose a GET endpoint at /api/widget/{name}, where Elysia validates the incoming query string against the widget's TypeBox schema before invoking the backend handler.",
@@ -33,26 +13,6 @@
         {
           "resource": "repo://src/lib/builder.tsx#L61-L66",
           "version": "repo-lines-v1:sha256:9867f51a93e3686e569752c33912f1514fde5a999c46999d5253d6b056f8e266:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzZiOGUzNmU4NTQ0NDY1YzVjMmYyM2ExZGJiM2QzYWE1YmZlNTY2YjY3OTNhNjc2ODE4NjZkNTcyMWIxNjQ2ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzE3YWYxMTAxYzk3YjdjMmY1MjU0MDc4MmU2MzRjYzQ0NDBmMGU5NzAzNDFlNTJmOTc1MjMxMWQ3OGI3ZDdkMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWRiNTY1ZjI2NTg2MjA2YWUxMGQ4Y2MwNzM2ZDBjZjMwOWQxYTYxOTZmNTI3MDI2MWJkNGEwMDMxYmNkMzJmZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjkwZDVjMmE5MDhmM2E0Zjk0MjQ3MjE1N2YzOGFlYjJhYTI5ODE0YThlMGE4NDFjNzBjZTZkNDM5NTI3MDllZCJ9"
-        }
-      ]
-    },
-    {
-      "id": "claim_3485f15f0b9f41c492d90108d79978ce",
-      "statement": "The generated React component always uses the widget's defaultQuery, serializes it into URL parameters (dropping undefined and null values), fetches /api/widget/{name}, and renders a hard-coded loading state, error state, or the provided template with the fetched data.",
-      "evidence": [
-        {
-          "resource": "repo://src/lib/builder.tsx#L68-L96",
-          "version": "repo-lines-v1:sha256:1382655acf523e17a919c4cbe03e29cb97b8adc258e01d9daea0f1854246d69f:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQwY2ZmMzNiZjgyOGM2YzgyMjBjNTk2NzBjNDU4NzlkMTc0Nzk4MzZlNzNhZjhjMjUwMWVkNGYxYTE1MDkwNWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFkOWUxMjU0NjQyNTU3NmQzZGVhZThjOWI5ZGJmMTI4ZDVkNmRkYWY1ZDdmZTg1NzkzNDkyN2RlZmZhM2I5ZGQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjJmYTA1ZDMxNGJiZjlkNWMxYWM3ZWNmMjU2MDBmMDhkMjFiNTQxNWUyMzZlZGNmYmNjYzA0MTU2MGJhMjk1NGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRkN2Q0Y2Y1OGUyYTVmNTExMTY5NDIzNmM2M2NiM2M5ZDRmYjI0OTBkZmE1OWNhYjhlNTgwNzgwMTY1MmRjOTIifQ"
-        }
-      ]
-    },
-    {
-      "id": "claim_c80c613f070c434fafe6afb811dcf552",
-      "statement": "Static widgets produce only a Component and create no Elysia route or data-fetching logic.",
-      "evidence": [
-        {
-          "resource": "repo://src/lib/builder.tsx#L54-L59",
-          "version": "repo-lines-v1:sha256:c2baacd924245b1fd159b400734e652ee3be07e16a97139de76e2f5b82f2003b:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWZmYWEzNTU2YTEyMmI4YjVlZjMyYTFhNDJjMTM3ZmM0MmU0MTlkMWMyMWRlNDliYjBlMzAzZDhhZjBhOTBiMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5M2Y0MGUzNzgxZWI4OTZjODJkMDQ2YTA4MDY3YTExZTM1Y2RmMmYxZGZhZjI2ZmVhOTBiOGRiNjY3NjQxMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjRkZTQ4YTBiMDA3MjMzNzhkZmYyNjE1ZTUwN2I2MzhjNmViMWI1MGM2MDYyZWMyMWQyZWY2ZDQ1NWMyNmQ4MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTdhYTZkZjA1Y2UyNmQzODRjNDRiODZjYmRlZDI0NDY5N2E4YTkwMzQ4N2VjZTMzYzFlNDIyMGRhOWUwZDIzZiJ9"
         }
       ]
     },
@@ -70,7 +30,7 @@
         },
         {
           "resource": "repo://src/lib/widgets/index.ts",
-          "version": "repo-file-v1:sha256:9764feed88c011cf50759735e23d97f84cf25eec84c9e0761a3120ffb5a854fb"
+          "version": "repo-file-v1:sha256:f72b465c44108681e4bc9ffd4917a1c3fe3124589417432b9ced927538b40bd5"
         }
       ]
     },
@@ -81,34 +41,6 @@
         {
           "resource": "repo://src/index.ts#L15-L19",
           "version": "repo-lines-v1:sha256:4749baf9cedb8b2cc97e1bb5c124c825703095c3191f0d26a3625513a4c86172:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiM2ZlN2ZjOTg1MzNjYTFkMThmOGFkNjMzMGM4ZmI4OTk1NzY1OGNhNDYxMjdjM2Q4MDVhZjE0NTYzNWE4ZWNmOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmFkMTc4Y2MzNmIyYzJkNGI2ZjlmZjU5ZjQ3OTQzZTM0MmEzNjdmZTljNWUwZjdjYTEzNzVmMDU3MzYzNmRlMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTI5N2E1MmQ2N2JjZmJmNmI4NTJmMjgxOGIyOWRiN2E4NDU5MjA2MDNkYzEzYmFiZDI0M2UwMzdlODgxZGRjMSJ9"
-        }
-      ]
-    },
-    {
-      "id": "claim_0058035df8ff48b0830c3a5f336eace1",
-      "statement": "The browser entry point maps each widget definition to a React element using widget.name as the React key and passes the resulting array to App.",
-      "evidence": [
-        {
-          "resource": "repo://src/App.tsx#L6-L22",
-          "version": "repo-lines-v1:sha256:594b511a74a7e43d72eb12c2f783a62c381939bebf992cb2659278ff0a080954:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZlNzAyNjVkNWI2N2RiMzdiZWE4MDgyM2M5NzgwNmFiMjBhMDkzMTA0ZGViNGJhMWU0NGYzZmVjMmM1MjcyOTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYyYjI1NDkyYjhkY2JkZDhkNjcxNjc5MzVkMGFmNzJkOTFjZjIyNjJhZmE5ZDMzOTg3MjAxZGE0MTg1ZTQ2YmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc5ZDIzM2Y1ZGFhYjIxOGQ5YzUxYWU4Y2FhMzU4Y2RlZTdiNTdiN2Y2Y2U0MTQ0N2ZjNjRlM2FlNTM0NjViNTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdkZWEwMTgwNTIwYmU5ZTVjN2E4OWEzZjY5YzM0YWYzOGQ3ZGVjOGZmY2MyOThhMTZlZmRlZTgwNDQ2MmMwMDYifQ"
-        },
-        {
-          "resource": "repo://src/frontend.tsx#L13-L16",
-          "version": "repo-lines-v1:sha256:c81613b3efd28bc59b59fa0de487f7b7e35a065ae2625bda37d294ab58b093d1:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODEzMThiMDJlZGFmZGJjYjNmNDljN2NmNWZhNTMzMWJlYmFkOGVjY2NmZGU5YzI2ZjRiYWZkOGJkNWE5ZTA2MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjZmNWI0MGIxNTg0NTdkMTc4NjRmMjE3OTA3ODZkZDVhMmVjZGI2NGI2NmE2NTFmNzg4ZDRlMjVjZDMzMDNkMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzhmZDJjOTUzNmQ3OTQ0NWNlYTAzZGVkYTg1NmExNDkwZGYxMjQ2NWFiZGE5MjFmZTczMGM4ZTMyMDZiYjgxNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWYzNGFhMTJjYzcyZDc3NTQ4OGRmODQyMTVlYWQ3OThkZDlhMjAwYTYyNzI1ZDdjMWMzN2M4OWFiYThjZDYzMCJ9"
-        }
-      ]
-    },
-    {
-      "id": "claim_8b880fef885d4b98be4a5fb30363004f",
-      "statement": "Widget query values are serialized into URL search parameters by the generated component, then validated by Elysia against the TypeBox schema before reaching the backend handler.",
-      "evidence": [
-        {
-          "resource": "repo://src/lib/builder.tsx#L61-L66",
-          "version": "repo-lines-v1:sha256:9867f51a93e3686e569752c33912f1514fde5a999c46999d5253d6b056f8e266:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzZiOGUzNmU4NTQ0NDY1YzVjMmYyM2ExZGJiM2QzYWE1YmZlNTY2YjY3OTNhNjc2ODE4NjZkNTcyMWIxNjQ2ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzE3YWYxMTAxYzk3YjdjMmY1MjU0MDc4MmU2MzRjYzQ0NDBmMGU5NzAzNDFlNTJmOTc1MjMxMWQ3OGI3ZDdkMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWRiNTY1ZjI2NTg2MjA2YWUxMGQ4Y2MwNzM2ZDBjZjMwOWQxYTYxOTZmNTI3MDI2MWJkNGEwMDMxYmNkMzJmZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjkwZDVjMmE5MDhmM2E0Zjk0MjQ3MjE1N2YzOGFlYjJhYTI5ODE0YThlMGE4NDFjNzBjZTZkNDM5NTI3MDllZCJ9"
-        },
-        {
-          "resource": "repo://src/lib/builder.tsx#L71-L90",
-          "version": "repo-lines-v1:sha256:7322d2150b9e881122ac85ef4914707433b05f21a85d713b501b10c8bf23e60d:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4NjkwMzMxNDBmZWZkZjVjZjE4MjQ5NzFjNWYxMjk5NzRkMGQxMTkyZjQ1MjNjMDI1MDRiOGM1MWM5NGRlYzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxN2FmMTEwMWM5N2I3YzJmNTI1NDA3ODJlNjM0Y2M0NDQwZjBlOTcwMzQxZTUyZjk3NTIzMTFkNzhiN2Q3ZDAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE1YjBiNzU3MDI5NzI2YmNlNWViMjIzNGM5NTA3YTU4Yjk1MjE5ZjhiNTA1YWZmOWZhOGFkZjZhNTlhOTgyOTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImYxMDFiYWIzMTUxMzhiNzJlMDU5NDdmYWI4N2FlMzhlYmNlMjM5MjhmYmQ5ZjE3ZTRjYjE0MGZhNTYxNGE2NTkifQ"
         }
       ]
     },
@@ -132,7 +64,7 @@
         },
         {
           "resource": "repo://src/frontend.tsx#L11-L16",
-          "version": "repo-lines-v1:sha256:28c31bb56fc8c765b7cda3e6a0c3631f2faa718ffa0a22889094bedb883d2ec3:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTk3OTkwODA5M2UwNTM5MTlkM2VlM2NmNDgwOTQ5ZTdmNzRlOTY2MzA3NjZkZjdiMTc5ODM0NzgxMGY4MDlkZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjZmNWI0MGIxNTg0NTdkMTc4NjRmMjE3OTA3ODZkZDVhMmVjZGI2NGI2NmE2NTFmNzg4ZDRlMjVjZDMzMDNkMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzZhMmRlNzE0MDI3ZTM0NTYzNjgxODgxYWI1ZTAyMWMxMzU4ODA1N2EzZDFjMDI1YTA0MDU3NzQ0OTk3ZjU5YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWYzNGFhMTJjYzcyZDc3NTQ4OGRmODQyMTVlYWQ3OThkZDlhMjAwYTYyNzI1ZDdjMWMzN2M4OWFiYThjZDYzMCJ9"
+          "version": "repo-lines-v1:sha256:1768de7a8871dd6558981f10b74f04e35877ec5d029245e950b9e1b20ebe4c44:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5Nzk5MDgwOTNlMDUzOTE5ZDNlZTNjZjQ4MDk0OWU3Zjc0ZTk2NjMwNzY2ZGY3YjE3OTgzNDc4MTBmODA5ZGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ5OTY3ZWMxZWQzODM2ZjhlYjE3YWZmMTcyYjViZmVmN2RlNjA0ODVhNDM5YzZjYTExYzU5MWUxNzU1NzM5YWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc2YTJkZTcxNDAyN2UzNDU2MzY4MTg4MWFiNWUwMjFjMTM1ODgwNTdhM2QxYzAyNWEwNDA1Nzc0NDk5N2Y1OWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVmMzRhYTEyY2M3MmQ3NzU0ODhkZjg0MjE1ZWFkNzk4ZGQ5YTIwMGE2MjcyNWQ3YzFjMzdjODlhYmE4Y2Q2MzAifQ"
         },
         {
           "resource": "repo://src/index.ts#L5-L19",
@@ -140,13 +72,13 @@
         },
         {
           "resource": "repo://src/lib/widgets/index.ts",
-          "version": "repo-file-v1:sha256:9764feed88c011cf50759735e23d97f84cf25eec84c9e0761a3120ffb5a854fb"
+          "version": "repo-file-v1:sha256:f72b465c44108681e4bc9ffd4917a1c3fe3124589417432b9ced927538b40bd5"
         }
       ]
     }
   ],
   "verification": {
     "by": "openwiki/0.5.2",
-    "at": "2026-09-17T14:20:27.519Z"
+    "at": "2026-09-17T21:48:00.351Z"
   }
 }

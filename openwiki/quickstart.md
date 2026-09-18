@@ -1,8 +1,11 @@
 ---
 type: quickstart
 title: Quickstart & Local Development
-description: How to install, run, build, and start the Glance app with Bun, plus a map of the OpenWiki docs for runtime, widgets, frontend, and deployment.
+description: How to install, run, build, and start the Glance Bun app, plus a map of the OpenWiki docs for runtime, widgets, frontend, and deployment.
 tags: [quickstart, bun, local-development, getting-started]
+verified:
+  - by: openwiki/0.5.2
+    at: 2026-09-17T21:48:00.351Z
 sources:
   - id: openwiki-source-7dc952d611a75d93fb9b2fb5
     resource: repo://bunfig.toml
@@ -18,17 +21,21 @@ sources:
     resource: repo://src/lib/builder.tsx
   - id: openwiki-source-a18f0915862c0e1e6ec66443
     resource: repo://src/lib/widgets/index.ts
-generated: { by: "openwiki/0.5.2", at: "2026-09-17T14:20:27.519Z" }
+  - id: openwiki-source-66099284f574e01d7c76680b
+    resource: repo://src/lib/widgets/Meteo.tsx
+  - id: openwiki-source-d203f0f52cd2dfd56b417b71
+    resource: repo://src/lib/widgets/Sistema.tsx
+generated: { by: "openwiki/0.5.2", at: "2026-09-17T21:48:00.351Z" }
 ---
 
 # Quickstart & Local Development
 
-This project is a Bun-first full-stack application. Bun runs the server, bundles the React frontend, and handles hot reload in development. This page explains how to get the app running locally and where to find deeper documentation for each part of the stack.
+Bun runs the server, bundles the React frontend, and handles hot reload in development. This page gets the app running locally and points to deeper docs for each part of the stack.
 
 ## Prerequisites
 
 - [Bun](https://bun.sh) must be installed. The project was created with `bun init` and uses Bun as its only runtime.
-- No separate Node.js or build tool is required.
+- No separate Node.js or additional build tool is required.
 
 ## Install dependencies
 
@@ -38,7 +45,7 @@ From the repository root, run:
 bun install
 ```
 
-This installs server dependencies such as Elysia, client dependencies such as React and TanStack Query, and the `@types/*` packages used by TypeScript.
+This installs Elysia, React, React DOM, TanStack Query, Eden Query, TypeBox, and the corresponding type packages.
 
 ## Start the development server
 
@@ -46,7 +53,7 @@ This installs server dependencies such as Elysia, client dependencies such as Re
 bun dev
 ```
 
-This runs `bun --hot src/index.ts`, which starts a Bun HTTP server with hot module reload. The server entry point is `src/index.ts`. The `--hot` flag applies changes to both server and frontend modules without a full restart.
+This runs `bun --hot src/index.ts`, which starts the Bun HTTP server with hot module reload. The server entry point is `src/index.ts`. The `--hot` flag applies changes to both server and frontend modules without a full restart.
 
 When the server starts, it prints a URL like `http://localhost:3000/`. Open that URL in a browser to see the app.
 
@@ -81,15 +88,59 @@ Keep secrets out of the `BUN_PUBLIC_*` namespace. If you add no client-side envi
 
 | Path | Purpose |
 |------|---------|
-| `src/index.ts` | Server entry point: Elysia API, Bun.serve routes, widget backend mounting. |
-| `src/index.html` | Minimal HTML shell; the React root container is the `<body id="root">`. |
-| `src/frontend.tsx` | Browser entry point: React root creation, `StrictMode`, widget rendering. |
+| `src/index.ts` | Server entry point: Elysia `api` router, widget backend mounting, `Bun.serve`. |
+| `src/index.html` | Minimal HTML shell; the React root container is `<body id="root">`. |
+| `src/frontend.tsx` | Browser entry point: React root creation, `StrictMode`, widget column mapping. |
 | `src/App.tsx` | Page chrome: header, three-column layout, footer, and `QueryClientProvider`. |
-| `src/lib/builder.tsx` | Widget builder: `defineWidget`, `Widget` class, dynamic/static widget factories. |
+| `src/lib/builder.tsx` | Widget builder: `Widget` class, `defineWidget`, static/dynamic/SSE factories. |
 | `src/lib/widgets/index.ts` | Widget registry. The single source of truth for both server and client. |
-| `src/lib/widgets/Prova.tsx` | Example dynamic widget. |
+| `src/lib/widgets/Meteo.tsx` | One-shot dynamic weather widget example. |
+| `src/lib/widgets/Sistema.tsx` | SSE dynamic system-monitor widget example. |
 | `package.json` | `dev`, `build`, and `start` scripts, plus dependencies. |
 | `tsconfig.json` | React JSX automatic runtime, bundler module resolution, path alias `@/*`. |
+
+## Widget registry and layout
+
+Widgets are registered in one place:
+
+```ts
+// src/lib/widgets/index.ts
+import { Meteo } from "./Meteo";
+import { Sistema } from "./Sistema";
+
+export const WIDGETS = [Meteo, Sistema]
+```
+
+Both `src/index.ts` and `src/frontend.tsx` import this array. The server mounts every widget that declares a `backend`; the browser renders every widget into one of three page columns based on `widget.size`:
+
+```tsx
+// src/frontend.tsx
+const widgetsByColumn = widgets.reduce<Record<"left" | "center" | "right", React.ReactElement[]>>(
+  (acc, item) => {
+    acc[item.size].push(item.widget);
+    return acc;
+  },
+  { left: [], center: [], right: [] }
+);
+```
+
+`App.tsx` places `left` and `right` widgets in the small side columns and `center` widgets in the full-width middle column.
+
+A dynamic widget declares a TypeBox query schema, a backend handler, and a template. By default the frontend fetches `/api/widget/{name}` via TanStack Query. If `update: true`, the widget also exposes `/api/widget/{name}/events` and the frontend subscribes via Server-Sent Events instead of polling.
+
+## Request flow
+
+```mermaid
+flowchart LR
+    Browser -->|"GET /"| BunServe["Bun.serve /*"]
+    BunServe --> index.html
+    Browser -->|"GET /api/widget/{name}"| api["Elysia /api/*"]
+    api --> backend["widget backend plugin"]
+    backend --> handler["backendHandler"]
+    Browser -->|"SSE /api/widget/{name}/events"| api
+```
+
+_Widget endpoints are mounted under `/api/*` by `Bun.serve`. SSE endpoints are only registered for widgets with `update: true`._
 
 ## Where to find more documentation
 
@@ -104,9 +155,11 @@ The OpenWiki pages are organized by topic:
 
 ## Local development tips
 
-- Use `bun dev` for normal development. Hot reload preserves the React root across module updates, so UI state is not lost on every file change.
+- Use `bun dev` for normal development. Hot reload preserves the React root across module updates via `import.meta.hot.data.root`, so UI state is not lost on every file change.
 - If you add or remove widgets, update only `src/lib/widgets/index.ts`. Both the server and the browser import the same registry.
 - To add a new widget, create a file under `src/lib/widgets/`, export the widget, and import it into `src/lib/widgets/index.ts`.
-- The example widget [`src/lib/widgets/Prova.tsx`](repo://src/lib/widgets/Prova.tsx) shows the intended dynamic-widget pattern.
+- The example widgets show the intended patterns:
+  - [`src/lib/widgets/Meteo.tsx`](repo://src/lib/widgets/Meteo.tsx) — one-shot dynamic widget that fetches weather data.
+  - [`src/lib/widgets/Sistema.tsx`](repo://src/lib/widgets/Sistema.tsx) — dynamic widget with `update: true` that streams system stats over SSE.
 - If a widget is not visible after registration, check that it is in the `WIDGETS` array and that the server was restarted or hot-reloaded.
-- Backend endpoints for dynamic widgets live at `/api/widget/{name}`, where `{name}` matches the widget's `name` field.
+- Backend endpoints for dynamic widgets live at `/api/widget/{name}`; SSE-enabled widgets also expose `/api/widget/{name}/events`.

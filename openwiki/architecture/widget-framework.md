@@ -6,6 +6,24 @@ tags: [widgets, elysia, typebox, react-query, sse, architecture]
 verified:
   - by: openwiki/0.5.2
     at: 2026-09-17T21:48:00.351Z
+sources:
+  - id: openwiki-source-5b54a58d1b51cd490b0e7162
+    resource: repo://package.json
+  - id: openwiki-source-54631e6ebf1d3b815c4a5eed
+    resource: repo://src/App.tsx
+  - id: openwiki-source-0103481f4eeeafa16742c4ee
+    resource: repo://src/frontend.tsx
+  - id: openwiki-source-d1fbef09192ffbab6eff0bc2
+    resource: repo://src/index.ts
+  - id: openwiki-source-bdc56a6bd82716cc6f36a195
+    resource: repo://src/lib/builder.tsx
+  - id: openwiki-source-a18f0915862c0e1e6ec66443
+    resource: repo://src/lib/widgets/index.ts
+  - id: openwiki-source-66099284f574e01d7c76680b
+    resource: repo://src/lib/widgets/Meteo.tsx
+  - id: openwiki-source-d203f0f52cd2dfd56b417b71
+    resource: repo://src/lib/widgets/Sistema.tsx
+generated: { by: "openwiki/0.5.2", at: "2026-09-17T21:48:00.351Z" }
 ---
 
 # Widget Framework
@@ -14,6 +32,8 @@ The widget framework is the project's primary extension model. A single `defineW
 
 Both the server and the browser import the same widget registry (`src/lib/widgets/index.ts`), so registering a widget in one place mounts its backend route, chooses its data strategy, and renders it in the correct page column.
 
+<!-- openwiki: broken internal link [/openwiki/concepts/widgets/meteo.md] file "/openwiki/concepts/widgets/meteo.md" does not exist. Fix the href or restore the target, then delete this comment. -->
+<!-- openwiki: broken internal link [/openwiki/concepts/widgets/sistema.md] file "/openwiki/concepts/widgets/sistema.md" does not exist. Fix the href or restore the target, then delete this comment. -->
 For the concepts behind static and dynamic widgets, see [Widget Concepts](/openwiki/concepts/widgets.md). For widget-specific details, see the [Meteo widget](/openwiki/concepts/widgets/meteo.md) and [Sistema widget](/openwiki/concepts/widgets/sistema.md) pages.
 
 ## Entry points
