@@ -3,9 +3,6 @@ type: build and deployment guide
 title: Build & Deployment
 description: How to develop, build, and run the Glance application with Bun, including the npm scripts, the `BUN_PUBLIC_*` environment-variable filter, and production serving.
 tags: [build, deployment, bun, operations, environment-variables]
-verified:
-  - by: openwiki/0.5.2
-    at: 2026-09-17T14:20:27.519Z
 sources:
   - id: openwiki-source-7dc952d611a75d93fb9b2fb5
     resource: repo://bunfig.toml

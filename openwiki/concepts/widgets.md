@@ -3,9 +3,6 @@ type: widget concepts
 title: Widget Concepts
 description: How widgets are classified as static or dynamic, how their lifecycle flows from registration to render, how query values become URL parameters, and the fixed loading and error UI conventions they follow.
 tags: [widgets, lifecycle, react-query, elysia, typebox]
-verified:
-  - by: openwiki/0.5.2
-    at: 2026-09-17T14:20:27.519Z
 sources:
   - id: openwiki-source-54631e6ebf1d3b815c4a5eed
     resource: repo://src/App.tsx

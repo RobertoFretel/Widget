@@ -3,9 +3,6 @@ type: frontend concepts
 title: Frontend Concepts
 description: React 19 client-side rendering, TanStack Query setup, Bun HMR root preservation, App layout structure, and CSS design conventions for the Glance frontend.
 tags: [react, tanstack-query, frontend, hmr, css, bun]
-verified:
-  - by: openwiki/0.5.2
-    at: 2026-09-17T14:20:27.519Z
 sources:
   - id: openwiki-source-7dc952d611a75d93fb9b2fb5
     resource: repo://bunfig.toml
@@ -24,25 +21,30 @@ sources:
   - id: openwiki-source-98d5ddb014a0fd4d678f6f2a
     resource: repo://tsconfig.json
 generated: { by: "openwiki/0.5.2", at: "2026-09-17T14:20:27.519Z" }
+verified:
+  - by: openwiki/0.5.2
+    at: 2026-09-17T21:48:00.351Z
 ---
 
 # Frontend Concepts
 
-The frontend is a client-side React 19 application bundled and served by Bun. It is intentionally minimal: a single HTML shell, one React root, a top-level `QueryClientProvider`, and a small set of CSS design tokens. Widgets provide the dynamic content; the frontend layer is responsible for mounting them, sharing the query client, and keeping the layout responsive.
+The frontend is a client-side React 19 application bundled and served by Bun. It is intentionally minimal: a single HTML shell, one React root, a top-level `QueryClientProvider`, and a small set of CSS design tokens. Widgets provide the dynamic content; the frontend layer is responsible for mounting them, grouping them into columns, sharing the query client, and keeping the layout responsive.
 
 ## Rendering flow
 
 ```mermaid
 flowchart TD
     HTML["index.html"] -->|loads module| FE["frontend.tsx"]
-    FE -->|StrictMode| Root["React root on #root"]
+    FE -->|maps WIDGETS by size| Groups["left / center / right groups"]
+    Groups -->|StrictMode| Root["React root on #root"]
     Root --> App["App component"]
     App -->|QueryClientProvider| Layout["Header / main / footer layout"]
-    Layout --> Widgets["Widget components"]
+    Layout --> Columns["left / center / right columns"]
+    Columns --> Widgets["Widget components"]
     Widgets -->|useQuery| QueryClient["TanStack QueryClient"]
 ```
 
-_How the browser loads the React app and mounts the widget tree._
+_How the browser loads the React app, groups widgets by size, and mounts the widget tree into three columns._
 
 ## HTML entry point
 
@@ -67,13 +69,35 @@ Bun resolves `./frontend.tsx` and bundles it on demand in development or as part
 
 ## React root and hot reload
 
-`src/frontend.tsx` is the browser entry point. It creates or reuses a React root, renders `App` inside `StrictMode`, and preserves the root object across Bun module hot reloads:
+`src/frontend.tsx` is the browser entry point. It creates or reuses a React root, renders `App` inside `StrictMode`, and preserves the root object across Bun module hot reloads.
+
+The widgets produced from the shared `WIDGETS` array are grouped by their declared `size` before they reach `App`:
+
+```tsx
+const widgets = WIDGETS.map(widget => {
+  const Component = widget.Component;
+  return {
+    widget: <Component key={widget.name} />,
+    size: widget.size
+  }
+});
+
+const widgetsByColumn = widgets.reduce<Record<"left" | "center" | "right", React.ReactElement[]>>(
+  (acc, item) => {
+    acc[item.size].push(item.widget);
+    return acc;
+  },
+  { left: [], center: [], right: [] }
+);
+```
+
+Each widget's `name` is used as the React `key`, and its `size` is used as the bucket key. The shared `WIDGETS` array is therefore the source of truth for both the rendered order within a column and the column each widget occupies.
 
 ```tsx
 const elem = document.getElementById("root")!;
 const app = (
   <StrictMode>
-    <App widgets={widgets} />
+    <App widgets={widgetsByColumn} />
   </StrictMode>
 );
 
@@ -82,25 +106,14 @@ const app = (
 
 The `import.meta.hot.data.root` pattern stores the root in Bun's HMR data bag. When a module is replaced, the existing root is reused so React state and DOM are preserved and only the changed subtree re-renders. `StrictMode` is always active, so components are intentionally double-rendered and effects are re-run in development to surface side-effect bugs.
 
-The `widgets` array is produced from the shared widget registry:
-
-```tsx
-const widgets = WIDGETS.map(widget => {
-  const Component = widget.Component;
-  return <Component key={widget.name} />;
-});
-```
-
-Each widget's `name` is used as the React `key`, so the registry is also the source of truth for the rendered order.
-
 ## App layout
 
-`src/App.tsx` owns the page chrome and the TanStack Query client. It imports `index.css`, imports the SVG logo, creates a single `QueryClient`, and wraps the tree in `QueryClientProvider`:
+`src/App.tsx` owns the page chrome and the TanStack Query client. It imports `index.css`, imports the SVG logo, creates a single `QueryClient`, and wraps the tree in `QueryClientProvider`. The component now receives widgets already grouped into columns:
 
 ```tsx
 const queryClient = new QueryClient()
 
-export const App: React.FC<{ widgets: Array<React.ReactElement> }> = ({ widgets }) => {
+export const App: React.FC<{ widgets: Record<"left" | "center" | "right", React.ReactElement[]> }> = ({ widgets }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="flex flex-column body-content">
@@ -116,10 +129,14 @@ export const App: React.FC<{ widgets: Array<React.ReactElement> }> = ({ widgets 
             <div className="page-content" id="page-content">
               <div className="page-columns">
                 <div className="page-column page-column-small">
-                  {widgets.map((widget) => widget)}
+                  {widgets.left.map(w => w)}
                 </div>
-                <div className="page-column page-column-full"></div>
-                <div className="page-column page-column-small"></div>
+                <div className="page-column page-column-full">
+                  {widgets.center.map(w => w)}
+                </div>
+                <div className="page-column page-column-small">
+                  {widgets.right.map(w => w)}
+                </div>
               </div>
             </div>
           </main>
@@ -135,7 +152,9 @@ export const App: React.FC<{ widgets: Array<React.ReactElement> }> = ({ widgets 
 }
 ```
 
-The layout is a full-height flex column: header, scrollable main area, and footer. Inside `main`, three columns are rendered. Widgets are placed in the first small column. The center column is currently empty and the third small column is empty. `main` has accessibility hints (`aria-live="polite"`, `aria-busy="false"`) for announcing dynamic content changes.
+The layout is a full-height flex column: header, scrollable main area, and footer. Inside `main`, three columns are rendered. The left and right columns use the narrow `page-column-small` class, while the center column uses `page-column-full` to fill the remaining space. `main` has accessibility hints (`aria-live="polite"`, `aria-busy="false"`) for announcing dynamic content changes.
+
+A widget declares its column by setting `size` to `"left"`, `"center"`, or `"right"` when it is defined with `defineWidget` in `src/lib/builder.tsx`. The current widgets place `Meteo` on the left and `Sistema` on the right, leaving the center column empty.
 
 ## TanStack Query setup
 
@@ -202,7 +221,7 @@ The mobile navigation pattern uses `:has()` to show one column at a time based o
 
 - **Client-side only**: React mounts on `document.getElementById("root")`. No markup is pre-rendered on the server.
 - **Single query client**: one `QueryClient` instance is created in `App.tsx` and shared by all widgets.
-- **Shared widget registry**: the `WIDGETS` array from `src/lib/widgets/index.ts` determines both backend routes and the rendered order on the frontend.
+- **Shared widget list**: the `WIDGETS` array from `src/lib/widgets/index.ts` determines both backend routes and the rendered widgets on the frontend, grouped by each widget's `size`.
 - **HMR root preservation**: the root is stored on `import.meta.hot.data` so hot reloads do not unmount the React tree.
 - **No runtime routing**: `App.tsx` renders a fixed layout; React Router or similar is not installed.
-- **Empty center/right columns**: the layout reserves space for them, but only the first small column currently renders widgets.
+- **Center column is empty**: the layout reserves space for it, but no widget currently declares `size: "center"`.

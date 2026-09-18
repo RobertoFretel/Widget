@@ -1,3 +1,4 @@
-import { Prova } from "./Prova";
+import { Meteo } from "./Meteo";
+import { Sistema } from "./Sistema";
 
-export const WIDGETS = [Prova]
+export const WIDGETS = [Meteo, Sistema]

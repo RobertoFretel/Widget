@@ -3,9 +3,6 @@ type: runtime architecture
 title: Runtime Architecture
 description: How the Bun HTTP server routes requests, mounts the Elysia API, bundles the React frontend, hydrates the page, and loads widget plugins end-to-end.
 tags: [architecture, runtime, bun, elysia, react, widgets]
-verified:
-  - by: openwiki/0.5.2
-    at: 2026-09-17T14:20:27.519Z
 sources:
   - id: openwiki-source-7dc952d611a75d93fb9b2fb5
     resource: repo://bunfig.toml

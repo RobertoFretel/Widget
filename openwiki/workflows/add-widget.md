@@ -3,9 +3,6 @@ type: workflow
 title: Adding a Widget
 description: Step-by-step workflow to add a new widget to the Glance app, from choosing a static or dynamic widget to registering it and verifying the backend route and frontend UI.
 tags: [widgets, workflow, backend, frontend]
-verified:
-  - by: openwiki/0.5.2
-    at: 2026-09-17T14:20:27.519Z
 sources:
   - id: openwiki-source-5b54a58d1b51cd490b0e7162
     resource: repo://package.json

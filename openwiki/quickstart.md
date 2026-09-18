@@ -3,9 +3,6 @@ type: quickstart
 title: Quickstart & Local Development
 description: How to install, run, build, and start the Glance app with Bun, plus a map of the OpenWiki docs for runtime, widgets, frontend, and deployment.
 tags: [quickstart, bun, local-development, getting-started]
-verified:
-  - by: openwiki/0.5.2
-    at: 2026-09-17T14:20:27.519Z
 sources:
   - id: openwiki-source-7dc952d611a75d93fb9b2fb5
     resource: repo://bunfig.toml
